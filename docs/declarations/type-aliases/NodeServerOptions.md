@@ -8,6 +8,6 @@
 
 > **NodeServerOptions**: [`NodeHttpServerOptions`](NodeHttpServerOptions.md) \| [`NodeHttpsServerOptions`](NodeHttpsServerOptions.md)
 
-Defined in: [node-http-adapter/src/declarations.ts:10](https://github.com/stonemjs/node-http-adapter/blob/536e0dac6f971d10122453661aa60ac1371c6317/src/declarations.ts#L10)
+Defined in: [node-http-adapter/src/declarations.ts:10](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/declarations.ts#L10)
 
 Represents options for configuring a Node.js HTTP or HTTPS server.

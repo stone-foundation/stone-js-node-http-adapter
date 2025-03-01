@@ -12,4 +12,4 @@
 
 ## Functions
 
-- [SetResponseResolverMiddleware](functions/SetResponseResolverMiddleware.md)
+- [SetNodeHttpResponseResolverMiddleware](functions/SetNodeHttpResponseResolverMiddleware.md)

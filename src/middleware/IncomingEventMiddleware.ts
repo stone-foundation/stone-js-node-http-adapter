@@ -1,11 +1,3 @@
-import proxyAddr from 'proxy-addr'
-import { TLSSocket } from 'node:tls'
-import { IncomingMessage } from 'node:http'
-import { NextPipe } from '@stone-js/pipeline'
-import { NODE_HTTP_PLATFORM } from '../constants'
-import { classMiddleware, IBlueprint } from '@stone-js/core'
-import { NodeHttpAdapterError } from '../errors/NodeHttpAdapterError'
-import { NodeHttpAdapterContext, NodeHttpAdapterResponseBuilder } from '../declarations'
 import {
   getProtocol,
   isIpTrusted,
@@ -13,6 +5,14 @@ import {
   CookieSameSite,
   CookieCollection
 } from '@stone-js/http-core'
+import proxyAddr from 'proxy-addr'
+import { TLSSocket } from 'node:tls'
+import { IBlueprint } from '@stone-js/core'
+import { IncomingMessage } from 'node:http'
+import { NextPipe } from '@stone-js/pipeline'
+import { NODE_HTTP_PLATFORM } from '../constants'
+import { NodeHttpAdapterError } from '../errors/NodeHttpAdapterError'
+import { NodeHttpAdapterContext, NodeHttpAdapterResponseBuilder } from '../declarations'
 
 /**
  * Represents the options for the IncomingEventMiddleware.
@@ -177,4 +177,4 @@ export class IncomingEventMiddleware {
 /**
  * Meta Middleware for processing incoming events.
  */
-export const MetaIncomingEventMiddleware = classMiddleware(IncomingEventMiddleware)
+export const MetaIncomingEventMiddleware = { module: IncomingEventMiddleware, isClass: true }

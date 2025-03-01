@@ -1,11 +1,5 @@
-import {
-  IBlueprint,
-  AdapterHooks,
-  AdapterResolver,
-  defaultKernelResolver,
-  defaultLoggerResolver
-} from '@stone-js/core'
 import { NodeHttpAdapter } from './NodeHttpAdapter'
+import { IBlueprint, AdapterResolver } from '@stone-js/core'
 
 /**
  * Resolver function for the HTTP adapter.
@@ -16,14 +10,5 @@ import { NodeHttpAdapter } from './NodeHttpAdapter'
  * @returns An `AdapterResolver` instance for managing HTTP interactions.
  */
 export const nodeHttpAdapterResolver: AdapterResolver = (blueprint: IBlueprint) => {
-  const hooks = blueprint.get<AdapterHooks>('stone.adapter.hooks', {})
-  const loggerResolver = blueprint.get('stone.logger.resolver', defaultLoggerResolver)
-  const handlerResolver = blueprint.get('stone.kernel.resolver', defaultKernelResolver)
-
-  return NodeHttpAdapter.create({
-    hooks,
-    blueprint,
-    handlerResolver,
-    logger: loggerResolver(blueprint)
-  })
+  return NodeHttpAdapter.create(blueprint)
 }

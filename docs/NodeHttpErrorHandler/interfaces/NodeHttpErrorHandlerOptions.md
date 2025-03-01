@@ -6,14 +6,14 @@
 
 # Interface: NodeHttpErrorHandlerOptions
 
-Defined in: [node-http-adapter/src/NodeHttpErrorHandler.ts:12](https://github.com/stonemjs/node-http-adapter/blob/536e0dac6f971d10122453661aa60ac1371c6317/src/NodeHttpErrorHandler.ts#L12)
+Defined in: [node-http-adapter/src/NodeHttpErrorHandler.ts:20](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/NodeHttpErrorHandler.ts#L20)
 
 NodeHttpErrorHandler options.
 
 ## Properties
 
-### logger
+### blueprint
 
-> **logger**: `ILogger`
+> **blueprint**: `IBlueprint`
 
-Defined in: [node-http-adapter/src/NodeHttpErrorHandler.ts:13](https://github.com/stonemjs/node-http-adapter/blob/536e0dac6f971d10122453661aa60ac1371c6317/src/NodeHttpErrorHandler.ts#L13)
+Defined in: [node-http-adapter/src/NodeHttpErrorHandler.ts:21](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/NodeHttpErrorHandler.ts#L21)

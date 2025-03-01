@@ -6,7 +6,7 @@
 
 # Interface: NodeHttpOptions
 
-Defined in: [node-http-adapter/src/decorators/NodeHttp.ts:11](https://github.com/stonemjs/node-http-adapter/blob/536e0dac6f971d10122453661aa60ac1371c6317/src/decorators/NodeHttp.ts#L11)
+Defined in: [node-http-adapter/src/decorators/NodeHttp.ts:11](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/decorators/NodeHttp.ts#L11)
 
 Interface for configuring the `NodeHttp` decorator.
 
@@ -23,7 +23,7 @@ of the Node.js HTTP adapter blueprint configuration.
 
 > `optional` **alias**: `string`
 
-Defined in: core/dist/index.d.ts:430
+Defined in: core/dist/index.d.ts:445
 
 The alias name for the adapter.
 This is a unique identifier used to reference the adapter.
@@ -39,7 +39,7 @@ Optional property.
 
 > `optional` **current**: `boolean`
 
-Defined in: core/dist/index.d.ts:436
+Defined in: core/dist/index.d.ts:451
 
 The current status identifier for the adapter.
 Used to indicate if this adapter instance is active or currently in use.
@@ -55,7 +55,7 @@ Optional property.
 
 > `optional` **default**: `boolean`
 
-Defined in: core/dist/index.d.ts:441
+Defined in: core/dist/index.d.ts:456
 
 Defines whether this adapter is the default adapter used by the application.
 Optional property.
@@ -68,9 +68,9 @@ Optional property.
 
 ### errorHandlers?
 
-> `optional` **errorHandlers**: `Record`\<`string`, `MetaAdapterErrorHandler`\>
+> `optional` **errorHandlers**: `Record`\<`string`, `MetaAdapterErrorHandler`\<`IncomingMessage`, `ServerResponse`, [`NodeHttpServer`](../../../declarations/type-aliases/NodeHttpServer.md)\>\>
 
-Defined in: core/dist/index.d.ts:419
+Defined in: core/dist/index.d.ts:439
 
 Error handlers used to manage and report errors that occur within the adapter.
 These handlers can be used to customize error handling behavior and logging.
@@ -81,26 +81,39 @@ These handlers can be used to customize error handling behavior and logging.
 
 ***
 
-### hooks?
+### eventHandlerResolver?
 
-> `optional` **hooks**: `AdapterHooks`
+> `optional` **eventHandlerResolver**: `AdapterEventHandlerResolver`\<`IncomingHttpEvent`, `OutgoingHttpResponse`\>
 
-Defined in: core/dist/index.d.ts:424
+Defined in: core/dist/index.d.ts:434
 
-Hooks that provide additional behavior during specific lifecycle events of the adapter.
-These hooks can be used to extend the adapter's functionality at various points.
+The event handler resolver used to create instances of the event handler.
 
 #### Inherited from
 
-`Partial.hooks`
+`Partial.eventHandlerResolver`
+
+***
+
+### isSsl?
+
+> `optional` **isSsl**: `boolean`
+
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:35](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/options/NodeHttpAdapterBlueprint.ts#L35)
+
+Determines if the server should use SSL.
+
+#### Inherited from
+
+`Partial.isSsl`
 
 ***
 
 ### middleware?
 
-> `optional` **middleware**: `MixedPipe`\<`any`, `any`\>[]
+> `optional` **middleware**: `AdapterMixedPipeType`\<`AdapterContext`\<`IncomingMessage`, `ServerResponse`, [`NodeHttpServer`](../../../declarations/type-aliases/NodeHttpServer.md), `IncomingHttpEvent`, `IncomingHttpEventOptions`, `OutgoingHttpResponse`\>, `ServerResponse`\>[]
 
-Defined in: core/dist/index.d.ts:414
+Defined in: core/dist/index.d.ts:430
 
 The middleware used for processing incoming or outgoing data in the adapter.
 Middleware can modify or handle events at different stages of the adapter's lifecycle.
@@ -115,7 +128,7 @@ Middleware can modify or handle events at different stages of the adapter's life
 
 > `optional` **platform**: `string`
 
-Defined in: core/dist/index.d.ts:405
+Defined in: core/dist/index.d.ts:421
 
 The platform identifier for the adapter.
 This is used to categorize the adapter based on the environment or technology it supports.
@@ -130,7 +143,7 @@ This is used to categorize the adapter based on the environment or technology it
 
 > `optional` **resolver**: `AdapterResolver`
 
-Defined in: core/dist/index.d.ts:409
+Defined in: core/dist/index.d.ts:425
 
 The class type resolver used to create instances of the adapter.
 
@@ -144,7 +157,7 @@ The class type resolver used to create instances of the adapter.
 
 > `optional` **server**: [`NodeServerOptions`](../../../declarations/type-aliases/NodeServerOptions.md)
 
-Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:27](https://github.com/stonemjs/node-http-adapter/blob/536e0dac6f971d10122453661aa60ac1371c6317/src/options/NodeHttpAdapterBlueprint.ts#L27)
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:40](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/options/NodeHttpAdapterBlueprint.ts#L40)
 
 Additional server configurations for the Node HTTP server.
 
@@ -158,7 +171,7 @@ Additional server configurations for the Node HTTP server.
 
 > `optional` **serverMiddleware**: [`ServerMiddleware`](../../../declarations/type-aliases/ServerMiddleware.md)[]
 
-Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:35](https://github.com/stonemjs/node-http-adapter/blob/536e0dac6f971d10122453661aa60ac1371c6317/src/options/NodeHttpAdapterBlueprint.ts#L35)
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:48](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/options/NodeHttpAdapterBlueprint.ts#L48)
 
 The platform middleware used for processing platform node HTTP requests and responses.
 This middleware is executed before the adapter middleware.
@@ -175,7 +188,7 @@ You can connect or express like middleware here to process request just before t
 
 > `optional` **url**: `string`
 
-Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:22](https://github.com/stonemjs/node-http-adapter/blob/536e0dac6f971d10122453661aa60ac1371c6317/src/options/NodeHttpAdapterBlueprint.ts#L22)
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:30](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/options/NodeHttpAdapterBlueprint.ts#L30)
 
 The base URL used by the node http to run the application.
 

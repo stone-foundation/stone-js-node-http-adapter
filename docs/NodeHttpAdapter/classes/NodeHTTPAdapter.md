@@ -6,7 +6,7 @@
 
 # Class: NodeHttpAdapter
 
-Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:46](https://github.com/stonemjs/node-http-adapter/blob/536e0dac6f971d10122453661aa60ac1371c6317/src/NodeHttpAdapter.ts#L46)
+Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:48](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/NodeHttpAdapter.ts#L48)
 
 Node.js HTTP Adapter for the Stone.js framework.
 
@@ -53,9 +53,9 @@ The adapter context type (e.g., `NodeHttpAdapterContext`).
 
 ### new NodeHttpAdapter()
 
-> `protected` **new NodeHttpAdapter**(`options`): [`NodeHttpAdapter`](NodeHttpAdapter.md)
+> `protected` **new NodeHttpAdapter**(`blueprint`): [`NodeHttpAdapter`](NodeHttpAdapter.md)
 
-Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:94](https://github.com/stonemjs/node-http-adapter/blob/536e0dac6f971d10122453661aa60ac1371c6317/src/NodeHttpAdapter.ts#L94)
+Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:84](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/NodeHttpAdapter.ts#L84)
 
 Constructs a `NodeHTTPAdapter` instance.
 
@@ -63,11 +63,11 @@ This constructor is protected and is intended to be used via the static `create`
 
 #### Parameters
 
-##### options
+##### blueprint
 
-`AdapterOptions`\<`IncomingHttpEvent`, `OutgoingHttpResponse`\>
+`IBlueprint`
 
-Configuration options for the adapter.
+The application blueprint for dependency resolution.
 
 #### Returns
 
@@ -83,7 +83,7 @@ Configuration options for the adapter.
 
 > `protected` `readonly` **blueprint**: `IBlueprint`\<`any`\>
 
-Defined in: core/dist/index.d.ts:2648
+Defined in: core/dist/index.d.ts:2662
 
 #### Inherited from
 
@@ -91,23 +91,11 @@ Defined in: core/dist/index.d.ts:2648
 
 ***
 
-### handlerResolver
-
-> `protected` `readonly` **handlerResolver**: `AdapterEventHandlerResolver`\<`IncomingHttpEvent`, `OutgoingHttpResponse`\>
-
-Defined in: core/dist/index.d.ts:2649
-
-#### Inherited from
-
-`Adapter.handlerResolver`
-
-***
-
 ### hooks
 
-> `protected` `readonly` **hooks**: `AdapterHooks`
+> `protected` `readonly` **hooks**: `AdapterHookType`\<[`NodeHttpAdapterContext`](../../declarations/interfaces/NodeHttpAdapterContext.md), `ServerResponse`\>
 
-Defined in: core/dist/index.d.ts:2647
+Defined in: core/dist/index.d.ts:2663
 
 #### Inherited from
 
@@ -119,11 +107,31 @@ Defined in: core/dist/index.d.ts:2647
 
 > `protected` `readonly` **logger**: `ILogger`
 
-Defined in: core/dist/index.d.ts:2646
+Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:58](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/NodeHttpAdapter.ts#L58)
+
+***
+
+### middleware
+
+> `protected` `readonly` **middleware**: `AdapterMixedPipeType`\<[`NodeHttpAdapterContext`](../../declarations/interfaces/NodeHttpAdapterContext.md), `ServerResponse`\>[]
+
+Defined in: core/dist/index.d.ts:2664
 
 #### Inherited from
 
-`Adapter.logger`
+`Adapter.middleware`
+
+***
+
+### resolvedErrorHandlers
+
+> `protected` `readonly` **resolvedErrorHandlers**: `Record`\<`string`, `IAdapterErrorHandler`\<`IncomingMessage`, `ServerResponse`, [`NodeHttpServer`](../../declarations/type-aliases/NodeHttpServer.md)\>\>
+
+Defined in: core/dist/index.d.ts:2665
+
+#### Inherited from
+
+`Adapter.resolvedErrorHandlers`
 
 ***
 
@@ -131,9 +139,7 @@ Defined in: core/dist/index.d.ts:2646
 
 > `protected` `readonly` **server**: [`NodeHttpServer`](../../declarations/type-aliases/NodeHttpServer.md)
 
-Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:63](https://github.com/stonemjs/node-http-adapter/blob/536e0dac6f971d10122453661aa60ac1371c6317/src/NodeHttpAdapter.ts#L63)
-
-The HTTP/HTTPS server instance created by the adapter.
+Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:59](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/NodeHttpAdapter.ts#L59)
 
 ***
 
@@ -141,27 +147,19 @@ The HTTP/HTTPS server instance created by the adapter.
 
 > `protected` `readonly` **url**: `URL`
 
-Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:58](https://github.com/stonemjs/node-http-adapter/blob/536e0dac6f971d10122453661aa60ac1371c6317/src/NodeHttpAdapter.ts#L58)
-
-The base URL for the server, derived from the Stone.js blueprint configuration.
+Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:57](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/NodeHttpAdapter.ts#L57)
 
 ## Methods
 
-### afterHandle()
+### buildRawResponse()
 
-> `protected` **afterHandle**(`eventHandler`, `context`): `Promise`\<`void`\>
+> `protected` **buildRawResponse**(`context`, `eventHandler`?): `Promise`\<`ServerResponse`\>
 
-Defined in: core/dist/index.d.ts:2710
+Defined in: core/dist/index.d.ts:2725
 
-Hook that runs after handling each event.
+Build the raw response.
 
 #### Parameters
-
-##### eventHandler
-
-`AdapterEventHandlerType`\<`IncomingHttpEvent`, `OutgoingHttpResponse`\>
-
-Action handler to be run.
 
 ##### context
 
@@ -169,39 +167,21 @@ Action handler to be run.
 
 The event context.
 
-#### Returns
-
-`Promise`\<`void`\>
-
-#### Inherited from
-
-`Adapter.afterHandle`
-
-***
-
-### beforeHandle()
-
-> `protected` **beforeHandle**(`eventHandler`): `Promise`\<`void`\>
-
-Defined in: core/dist/index.d.ts:2703
-
-Hook that runs before handling each event.
-
-#### Parameters
-
-##### eventHandler
+##### eventHandler?
 
 `AdapterEventHandlerType`\<`IncomingHttpEvent`, `OutgoingHttpResponse`\>
 
-Action handler to be run.
+The event handler to be run.
 
 #### Returns
 
-`Promise`\<`void`\>
+`Promise`\<`ServerResponse`\>
+
+The raw response wrapper.
 
 #### Inherited from
 
-`Adapter.beforeHandle`
+`Adapter.buildRawResponse`
 
 ***
 
@@ -209,7 +189,7 @@ Action handler to be run.
 
 > `protected` **createServer**(): [`NodeHttpServer`](../../declarations/type-aliases/NodeHttpServer.md)
 
-Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:196](https://github.com/stonemjs/node-http-adapter/blob/536e0dac6f971d10122453661aa60ac1371c6317/src/NodeHttpAdapter.ts#L196)
+Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:191](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/NodeHttpAdapter.ts#L191)
 
 Creates the HTTP or HTTPS server based on the adapter's configuration.
 
@@ -225,7 +205,7 @@ A `NodeHttpServer` instance.
 
 > `protected` **eventListener**(`rawEvent`, `rawResponse`): `Promise`\<`ServerResponse`\>
 
-Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:154](https://github.com/stonemjs/node-http-adapter/blob/536e0dac6f971d10122453661aa60ac1371c6317/src/NodeHttpAdapter.ts#L154)
+Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:148](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/NodeHttpAdapter.ts#L148)
 
 Handles incoming HTTP requests and sends them through the adapter's event pipeline.
 
@@ -251,27 +231,65 @@ A promise resolving to a ServerResponse (e.g., `ServerResponse`).
 
 ***
 
-### executeHooks()
+### executeEventHandlerHooks()
 
-> `protected` **executeHooks**(`hook`, `context`?): `Promise`\<`void`\>
+> `protected` **executeEventHandlerHooks**(`hook`, `eventHandler`): `Promise`\<`void`\>
 
-Defined in: core/dist/index.d.ts:2724
+Defined in: core/dist/index.d.ts:2753
 
-Execute lifecycle hooks.
+Execute the event handler lifecycle hooks.
 
 #### Parameters
 
 ##### hook
 
-keyof `AdapterHooks`
+`KernelHookName`
 
 The hook to execute.
+
+##### eventHandler
+
+`AdapterEventHandlerType`\<`IncomingHttpEvent`, `OutgoingHttpResponse`\>
+
+The event handler to be run.
+
+#### Returns
+
+`Promise`\<`void`\>
+
+#### Inherited from
+
+`Adapter.executeEventHandlerHooks`
+
+***
+
+### executeHooks()
+
+> `protected` **executeHooks**(`name`, `context`?, `error`?): `Promise`\<`void`\>
+
+Defined in: core/dist/index.d.ts:2761
+
+Execute adapter lifecycle hooks.
+
+#### Parameters
+
+##### name
+
+`AdapterHookName`
+
+The hook's name.
 
 ##### context?
 
 [`NodeHttpAdapterContext`](../../declarations/interfaces/NodeHttpAdapterContext.md)
 
 The event context.
+
+##### error?
+
+`any`
+
+The error to handle.
 
 #### Returns
 
@@ -283,17 +301,85 @@ The event context.
 
 ***
 
+### handleError()
+
+> `protected` **handleError**(`error`, `context`): `Promise`\<`AdapterEventBuilderType`\<`ServerResponse`\>\>
+
+Defined in: core/dist/index.d.ts:2717
+
+Handle error.
+
+#### Parameters
+
+##### error
+
+`Error`
+
+The error to handle.
+
+##### context
+
+[`NodeHttpAdapterContext`](../../declarations/interfaces/NodeHttpAdapterContext.md)
+
+The event context.
+
+#### Returns
+
+`Promise`\<`AdapterEventBuilderType`\<`ServerResponse`\>\>
+
+The raw response.
+
+#### Inherited from
+
+`Adapter.handleError`
+
+***
+
+### handleEvent()
+
+> `protected` **handleEvent**(`context`, `eventHandler`): `Promise`\<`IAdapterEventBuilder`\<`RawResponseOptions`, `IRawResponseWrapper`\<`ServerResponse`\>\>\>
+
+Defined in: core/dist/index.d.ts:2709
+
+Handle the event.
+
+#### Parameters
+
+##### context
+
+[`NodeHttpAdapterContext`](../../declarations/interfaces/NodeHttpAdapterContext.md)
+
+The event context.
+
+##### eventHandler
+
+`AdapterEventHandlerType`\<`IncomingHttpEvent`, `OutgoingHttpResponse`\>
+
+The event handler to be run.
+
+#### Returns
+
+`Promise`\<`IAdapterEventBuilder`\<`RawResponseOptions`, `IRawResponseWrapper`\<`ServerResponse`\>\>\>
+
+The raw response wrapper.
+
+#### Inherited from
+
+`Adapter.handleEvent`
+
+***
+
 ### makePipelineOptions()
 
-> `protected` **makePipelineOptions**(): `PipelineOptions`\<[`NodeHttpAdapterContext`](../../declarations/interfaces/NodeHttpAdapterContext.md), `IAdapterEventBuilder`\<`RawResponseOptions`, `IRawResponseWrapper`\<`ServerResponse`\>\>\>
+> `protected` **makePipelineOptions**(): `PipelineOptions`\<[`NodeHttpAdapterContext`](../../declarations/interfaces/NodeHttpAdapterContext.md), `AdapterEventBuilderType`\<`ServerResponse`\>\>
 
-Defined in: core/dist/index.d.ts:2730
+Defined in: core/dist/index.d.ts:2731
 
 Create pipeline options for the Adapter.
 
 #### Returns
 
-`PipelineOptions`\<[`NodeHttpAdapterContext`](../../declarations/interfaces/NodeHttpAdapterContext.md), `IAdapterEventBuilder`\<`RawResponseOptions`, `IRawResponseWrapper`\<`ServerResponse`\>\>\>
+`PipelineOptions`\<[`NodeHttpAdapterContext`](../../declarations/interfaces/NodeHttpAdapterContext.md), `AdapterEventBuilderType`\<`ServerResponse`\>\>
 
 The pipeline options for transforming the event.
 
@@ -303,37 +389,11 @@ The pipeline options for transforming the event.
 
 ***
 
-### onPrepare()
-
-> `protected` **onPrepare**(`eventHandler`): `Promise`\<`void`\>
-
-Defined in: core/dist/index.d.ts:2697
-
-Hook that runs before preparing the event context.
-
-#### Parameters
-
-##### eventHandler
-
-`AdapterEventHandlerType`\<`IncomingHttpEvent`, `OutgoingHttpResponse`\>
-
-Action handler to be run.
-
-#### Returns
-
-`Promise`\<`void`\>
-
-#### Inherited from
-
-`Adapter.onPrepare`
-
-***
-
 ### onStart()
 
 > `protected` **onStart**(): `Promise`\<`void`\>
 
-Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:132](https://github.com/stonemjs/node-http-adapter/blob/536e0dac6f971d10122453661aa60ac1371c6317/src/NodeHttpAdapter.ts#L132)
+Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:126](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/NodeHttpAdapter.ts#L126)
 
 Lifecycle hook for adapter initialization.
 
@@ -348,101 +408,13 @@ such as setting up exception listeners and verifying the runtime environment.
 
 If the adapter is used outside a Node.js context.
 
-#### Overrides
-
-`Adapter.onStart`
-
-***
-
-### onStop()
-
-> `protected` **onStop**(): `Promise`\<`void`\>
-
-Defined in: core/dist/index.d.ts:2691
-
-Hook that runs just before shutting down the application.
-
-#### Returns
-
-`Promise`\<`void`\>
-
-#### Inherited from
-
-`Adapter.onStop`
-
-***
-
-### onTerminate()
-
-> `protected` **onTerminate**(`eventHandler`, `context`): `Promise`\<`void`\>
-
-Defined in: core/dist/index.d.ts:2717
-
-Hook that runs after running the action handler.
-
-#### Parameters
-
-##### eventHandler
-
-`AdapterEventHandlerType`\<`IncomingHttpEvent`, `OutgoingHttpResponse`\>
-
-Action handler to be run.
-
-##### context
-
-[`NodeHttpAdapterContext`](../../declarations/interfaces/NodeHttpAdapterContext.md)
-
-The event context.
-
-#### Returns
-
-`Promise`\<`void`\>
-
-#### Inherited from
-
-`Adapter.onTerminate`
-
-***
-
-### prepareResponse()
-
-> `protected` **prepareResponse**(`eventHandler`, `context`): `Promise`\<`IAdapterEventBuilder`\<`RawResponseOptions`, `IRawResponseWrapper`\<`ServerResponse`\>\>\>
-
-Defined in: core/dist/index.d.ts:2745
-
-Prepare the response for the event handler.
-
-#### Parameters
-
-##### eventHandler
-
-`AdapterEventHandlerType`\<`IncomingHttpEvent`, `OutgoingHttpResponse`\>
-
-The event handler to prepare the response for.
-
-##### context
-
-[`NodeHttpAdapterContext`](../../declarations/interfaces/NodeHttpAdapterContext.md)
-
-The event context.
-
-#### Returns
-
-`Promise`\<`IAdapterEventBuilder`\<`RawResponseOptions`, `IRawResponseWrapper`\<`ServerResponse`\>\>\>
-
-The raw response wrapper.
-
-#### Inherited from
-
-`Adapter.prepareResponse`
-
 ***
 
 ### resolveErrorHandler()
 
 > `protected` **resolveErrorHandler**(`error`): `IAdapterErrorHandler`\<`IncomingMessage`, `ServerResponse`, [`NodeHttpServer`](../../declarations/type-aliases/NodeHttpServer.md)\>
 
-Defined in: core/dist/index.d.ts:2737
+Defined in: core/dist/index.d.ts:2746
 
 Get the error handler for the given error.
 
@@ -460,9 +432,37 @@ The error to get the handler for.
 
 The error handler.
 
+#### Throws
+
+IntegrationError
+
 #### Inherited from
 
 `Adapter.resolveErrorHandler`
+
+***
+
+### resolveEventHandler()
+
+> `protected` **resolveEventHandler**(): `AdapterEventHandlerType`\<`IncomingHttpEvent`, `OutgoingHttpResponse`\>
+
+Defined in: core/dist/index.d.ts:2738
+
+Get the event handler for the adapter.
+
+#### Returns
+
+`AdapterEventHandlerType`\<`IncomingHttpEvent`, `OutgoingHttpResponse`\>
+
+The event handler for the adapter.
+
+#### Throws
+
+If the event handler is missing.
+
+#### Inherited from
+
+`Adapter.resolveEventHandler`
 
 ***
 
@@ -470,13 +470,13 @@ The error handler.
 
 > **run**\<`ExecutionResultType`\>(): `Promise`\<`ExecutionResultType`\>
 
-Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:114](https://github.com/stonemjs/node-http-adapter/blob/536e0dac6f971d10122453661aa60ac1371c6317/src/NodeHttpAdapter.ts#L114)
+Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:106](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/NodeHttpAdapter.ts#L106)
 
 Starts the HTTP/HTTPS server and listens for incoming requests.
 
 #### Type Parameters
 
-• **ExecutionResultType** = [`NodeHttpServer`](../../declarations/type-aliases/NodeHttpServer.md)
+• **ExecutionResultType** = `undefined`
 
 #### Returns
 
@@ -504,17 +504,13 @@ console.log('Server is running');
 
 ### sendEventThroughDestination()
 
-> `protected` **sendEventThroughDestination**(`eventHandler`, `context`): `Promise`\<`ServerResponse`\>
+> `protected` **sendEventThroughDestination**(`context`, `eventHandler`): `Promise`\<`ServerResponse`\>
 
-Defined in: core/dist/index.d.ts:2683
+Defined in: core/dist/index.d.ts:2701
 
-Incoming message listener.
+Send the raw event through the destination.
 
 #### Parameters
-
-##### eventHandler
-
-`AdapterEventHandlerType`\<`IncomingHttpEvent`, `OutgoingHttpResponse`\>
 
 ##### context
 
@@ -522,11 +518,21 @@ Incoming message listener.
 
 The event context.
 
+##### eventHandler
+
+`AdapterEventHandlerType`\<`IncomingHttpEvent`, `OutgoingHttpResponse`\>
+
+The event handler to be run.
+
 #### Returns
 
 `Promise`\<`ServerResponse`\>
 
-Platform-specific output.
+Platform-specific response.
+
+#### Throws
+
+IntegrationError
 
 #### Inherited from
 
@@ -538,7 +544,7 @@ Platform-specific output.
 
 > `protected` **setupGlobalErrorHandlers**(): `void`
 
-Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:223](https://github.com/stonemjs/node-http-adapter/blob/536e0dac6f971d10122453661aa60ac1371c6317/src/NodeHttpAdapter.ts#L223)
+Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:218](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/NodeHttpAdapter.ts#L218)
 
 Sets up global error handlers for uncaught exceptions and unhandled rejections.
 Ensures critical errors are logged and the process exits safely.
@@ -553,7 +559,7 @@ Ensures critical errors are logged and the process exits safely.
 
 > `protected` **setupShutdownHook**(): `void`
 
-Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:244](https://github.com/stonemjs/node-http-adapter/blob/536e0dac6f971d10122453661aa60ac1371c6317/src/NodeHttpAdapter.ts#L244)
+Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:240](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/NodeHttpAdapter.ts#L240)
 
 Sets up a shutdown listener to gracefully stop the server on SIGINT.
 
@@ -563,22 +569,57 @@ Sets up a shutdown listener to gracefully stop the server on SIGINT.
 
 ***
 
+### validateContextAndEventHandler()
+
+> `protected` **validateContextAndEventHandler**(`context`, `eventHandler`): `void`
+
+Defined in: core/dist/index.d.ts:2769
+
+Validate the context and event handler.
+
+#### Parameters
+
+##### context
+
+[`NodeHttpAdapterContext`](../../declarations/interfaces/NodeHttpAdapterContext.md)
+
+The context to validate.
+
+##### eventHandler
+
+`AdapterEventHandlerType`\<`IncomingHttpEvent`, `OutgoingHttpResponse`\>
+
+The event handler to validate.
+
+#### Returns
+
+`void`
+
+#### Throws
+
+IntegrationError
+
+#### Inherited from
+
+`Adapter.validateContextAndEventHandler`
+
+***
+
 ### create()
 
-> `static` **create**(`options`): [`NodeHttpAdapter`](NodeHttpAdapter.md)
+> `static` **create**(`blueprint`): [`NodeHttpAdapter`](NodeHttpAdapter.md)
 
-Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:82](https://github.com/stonemjs/node-http-adapter/blob/536e0dac6f971d10122453661aa60ac1371c6317/src/NodeHttpAdapter.ts#L82)
+Defined in: [node-http-adapter/src/NodeHttpAdapter.ts:73](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/NodeHttpAdapter.ts#L73)
 
 Creates a new `NodeHTTPAdapter` instance.
 
 #### Parameters
 
-##### options
+##### blueprint
 
-`AdapterOptions`\<`IncomingHttpEvent`, `OutgoingHttpResponse`\>
+`IBlueprint`
 
-Configuration options for the adapter, including lifecycle event handlers,
-                 logger, and dependency injection via the blueprint.
+The application blueprint.
 
 #### Returns
 
@@ -589,10 +630,6 @@ A new instance of `NodeHTTPAdapter`.
 #### Example
 
 ```typescript
-const adapter = NodeHTTPAdapter.create({
-  blueprint,
-  handlerResolver,
-  logger,
-});
+const adapter = NodeHTTPAdapter.create(blueprint);
 await adapter.run();
 ```

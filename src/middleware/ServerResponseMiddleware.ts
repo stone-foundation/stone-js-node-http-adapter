@@ -1,6 +1,6 @@
 import statuses from 'statuses'
+import { IBlueprint } from '@stone-js/core'
 import { NextPipe } from '@stone-js/pipeline'
-import { classMiddleware, IBlueprint } from '@stone-js/core'
 import { NodeHttpAdapterError } from '../errors/NodeHttpAdapterError'
 import { BinaryFileResponse, streamFile, StreamFileOptions } from '@stone-js/http-core'
 import { NodeHttpAdapterContext, NodeHttpAdapterResponseBuilder } from '../declarations'
@@ -66,4 +66,4 @@ export class ServerResponseMiddleware {
 /**
  * Meta Middleware for processing server responses.
  */
-export const MetaServerResponseMiddleware = classMiddleware(ServerResponseMiddleware)
+export const MetaServerResponseMiddleware = { module: ServerResponseMiddleware, isClass: true }

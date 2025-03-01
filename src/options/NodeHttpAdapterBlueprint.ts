@@ -1,12 +1,13 @@
 import { NODE_HTTP_PLATFORM } from '../constants'
 import { nodeHttpAdapterResolver } from '../resolvers'
+import { IncomingMessage, ServerResponse } from 'node:http'
 import { NodeHttpErrorHandler } from '../NodeHttpErrorHandler'
-import { NodeServerOptions, ServerMiddleware } from '../declarations'
-import { AdapterConfig, AppConfig, StoneBlueprint } from '@stone-js/core'
 import { metaAdapterConfigMiddlewares } from '../middleware/configMiddleware'
 import { MetaIncomingEventMiddleware } from '../middleware/IncomingEventMiddleware'
+import { NodeHttpServer, NodeServerOptions, ServerMiddleware } from '../declarations'
 import { MetaServerResponseMiddleware } from '../middleware/ServerResponseMiddleware'
-import { HttpConfig, IncomingHttpEvent, OutgoingHttpResponse, httpCoreBlueprint } from '@stone-js/http-core'
+import { AdapterConfig, AppConfig, defaultKernelResolver, StoneBlueprint } from '@stone-js/core'
+import { HttpConfig, IncomingHttpEvent, IncomingHttpEventOptions, OutgoingHttpResponse, httpCoreBlueprint } from '@stone-js/http-core'
 
 /**
  * NodeHttpAdapterAdapterConfig Interface.
@@ -15,11 +16,23 @@ import { HttpConfig, IncomingHttpEvent, OutgoingHttpResponse, httpCoreBlueprint 
  * within the Stone.js framework. It includes settings such as the adapter's alias,
  * resolver, middleware, hooks, and server configurations.
  */
-export interface NodeHttpAdapterAdapterConfig extends AdapterConfig {
+export interface NodeHttpAdapterAdapterConfig extends AdapterConfig<
+IncomingMessage,
+ServerResponse,
+NodeHttpServer,
+IncomingHttpEvent,
+IncomingHttpEventOptions,
+OutgoingHttpResponse
+> {
   /**
    * The base URL used by the node http to run the application.
    */
   url: string
+
+  /**
+   * Determines if the server should use SSL.
+   */
+  isSsl?: boolean
 
   /**
    * Additional server configurations for the Node HTTP server.
@@ -70,18 +83,18 @@ export const nodeHttpAdapterBlueprint: NodeHttpAdapterBlueprint = {
     },
     adapters: [
       {
-        hooks: {},
         server: {},
         current: false,
         default: false,
         serverMiddleware: [],
         url: 'http://localhost:8080',
         platform: NODE_HTTP_PLATFORM,
-        resolver: nodeHttpAdapterResolver,
         middleware: [
           MetaIncomingEventMiddleware,
           MetaServerResponseMiddleware
         ],
+        resolver: nodeHttpAdapterResolver,
+        eventHandlerResolver: defaultKernelResolver,
         errorHandlers: {
           default: { module: NodeHttpErrorHandler, isClass: true }
         }
