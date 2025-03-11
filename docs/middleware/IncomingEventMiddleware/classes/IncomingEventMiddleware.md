@@ -6,7 +6,7 @@
 
 # Class: IncomingEventMiddleware
 
-Defined in: [node-http-adapter/src/middleware/IncomingEventMiddleware.ts:45](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/middleware/IncomingEventMiddleware.ts#L45)
+Defined in: [node-http-adapter/src/middleware/IncomingEventMiddleware.ts:45](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/middleware/IncomingEventMiddleware.ts#L45)
 
 Middleware for handling incoming events and transforming them into Stone.js events.
 
@@ -19,7 +19,7 @@ headers, cookies, and more, and forwards them to the next middleware in the pipe
 
 > **new IncomingEventMiddleware**(`options`): [`IncomingEventMiddleware`](IncomingEventMiddleware.md)
 
-Defined in: [node-http-adapter/src/middleware/IncomingEventMiddleware.ts:56](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/middleware/IncomingEventMiddleware.ts#L56)
+Defined in: [node-http-adapter/src/middleware/IncomingEventMiddleware.ts:56](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/middleware/IncomingEventMiddleware.ts#L56)
 
 Create an IncomingEventMiddleware instance.
 
@@ -43,7 +43,7 @@ Options containing the blueprint for resolving configuration and dependencies.
 
 > **handle**(`context`, `next`): `Promise`\<[`NodeHttpAdapterResponseBuilder`](../../../declarations/type-aliases/NodeHttpAdapterResponseBuilder.md)\>
 
-Defined in: [node-http-adapter/src/middleware/IncomingEventMiddleware.ts:68](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/middleware/IncomingEventMiddleware.ts#L68)
+Defined in: [node-http-adapter/src/middleware/IncomingEventMiddleware.ts:68](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/middleware/IncomingEventMiddleware.ts#L68)
 
 Handles the incoming event, processes it, and invokes the next middleware in the pipeline.
 

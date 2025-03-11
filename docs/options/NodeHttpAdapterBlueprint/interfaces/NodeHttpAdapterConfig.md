@@ -6,7 +6,7 @@
 
 # Interface: NodeHttpAdapterConfig
 
-Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:54](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/options/NodeHttpAdapterBlueprint.ts#L54)
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:59](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/options/NodeHttpAdapterBlueprint.ts#L59)
 
 Represents the NodeHttpAdapter configuration options for the application.
 
@@ -35,7 +35,7 @@ This key allow you to specify the current adapter with the alias key.
 
 > **adapters**: [`NodeHttpAdapterAdapterConfig`](NodeHttpAdapterAdapterConfig.md)[]
 
-Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:56](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/options/NodeHttpAdapterBlueprint.ts#L56)
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:61](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/options/NodeHttpAdapterBlueprint.ts#L61)
 
 Adapter configurations for the application.
 
@@ -122,7 +122,7 @@ The fallback locale used when a translation for the default locale is unavailabl
 
 > **http**: `Partial`\<`HttpConfig`\>
 
-Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:55](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/options/NodeHttpAdapterBlueprint.ts#L55)
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:60](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/options/NodeHttpAdapterBlueprint.ts#L60)
 
 ***
 

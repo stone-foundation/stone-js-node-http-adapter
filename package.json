@@ -52,16 +52,17 @@
     "prepare": "husky"
   },
   "peerDependencies": {
-    "@stone-js/core": "file:/Users/evenspierre/Projects/StoneJS/core",
     "@stone-js/config": "file:/Users/evenspierre/Projects/StoneJS/config",
-    "@stone-js/pipeline": "file:/Users/evenspierre/Projects/StoneJS/pipeline",
-    "@stone-js/http-core": "file:/Users/evenspierre/Projects/StoneJS/http-core",
+    "@stone-js/core": "file:/Users/evenspierre/Projects/StoneJS/core",
     "@stone-js/filesystem": "file:/Users/evenspierre/Projects/StoneJS/filesystem",
+    "@stone-js/http-core": "file:/Users/evenspierre/Projects/StoneJS/http-core",
+    "@stone-js/pipeline": "file:/Users/evenspierre/Projects/StoneJS/pipeline",
     "@stone-js/service-container": "file:/Users/evenspierre/Projects/StoneJS/service-container"
   },
   "dependencies": {
     "accepts": "^1.3.8",
     "bytes": "^3.1.2",
+    "chalk": "^5.4.1",
     "co-body": "^6.2.0",
     "connect": "^3.7.0",
     "content-type": "^1.0.5",

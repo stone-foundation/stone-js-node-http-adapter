@@ -8,7 +8,7 @@
 
 > **NodeHttp**\<`T`\>(`options`): `ClassDecorator`
 
-Defined in: [node-http-adapter/src/decorators/NodeHttp.ts:39](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/decorators/NodeHttp.ts#L39)
+Defined in: [node-http-adapter/src/decorators/NodeHttp.ts:39](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/decorators/NodeHttp.ts#L39)
 
 A class decorator for registering a Node.js HTTP adapter in the Stone.js framework.
 

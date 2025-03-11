@@ -6,7 +6,7 @@
 
 # Class: NodeHttpErrorHandler
 
-Defined in: [node-http-adapter/src/NodeHttpErrorHandler.ts:27](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/NodeHttpErrorHandler.ts#L27)
+Defined in: [node-http-adapter/src/NodeHttpErrorHandler.ts:27](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/NodeHttpErrorHandler.ts#L27)
 
 Class representing an NodeHttpErrorHandler.
 
@@ -20,7 +20,7 @@ Class representing an NodeHttpErrorHandler.
 
 > **new NodeHttpErrorHandler**(`options`): [`NodeHttpErrorHandler`](NodeHttpErrorHandler.md)
 
-Defined in: [node-http-adapter/src/NodeHttpErrorHandler.ts:35](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/NodeHttpErrorHandler.ts#L35)
+Defined in: [node-http-adapter/src/NodeHttpErrorHandler.ts:35](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/NodeHttpErrorHandler.ts#L35)
 
 Create an NodeHttpErrorHandler.
 
@@ -42,7 +42,7 @@ NodeHttpErrorHandler options.
 
 > **handle**(`error`, `context`): `AdapterEventBuilderType`\<`ServerResponse`\>
 
-Defined in: [node-http-adapter/src/NodeHttpErrorHandler.ts:46](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/NodeHttpErrorHandler.ts#L46)
+Defined in: [node-http-adapter/src/NodeHttpErrorHandler.ts:46](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/NodeHttpErrorHandler.ts#L46)
 
 Handle an error.
 

@@ -40,6 +40,11 @@ OutgoingHttpResponse
   server: NodeServerOptions
 
   /**
+   * Determines if the server should print the URL when starting.
+   */
+  printUrls?: boolean
+
+  /**
    * The platform middleware used for processing platform node HTTP requests and responses.
    * This middleware is executed before the adapter middleware.
    * This middleware is lower-level and should be used for platform-specific processing.

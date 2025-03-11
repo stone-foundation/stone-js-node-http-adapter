@@ -6,7 +6,7 @@
 
 # Class: BodyEventMiddleware
 
-Defined in: [node-http-adapter/src/middleware/BodyEventMiddleware.ts:28](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/middleware/BodyEventMiddleware.ts#L28)
+Defined in: [node-http-adapter/src/middleware/BodyEventMiddleware.ts:28](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/middleware/BodyEventMiddleware.ts#L28)
 
 Class representing a BodyEventMiddleware.
 
@@ -22,7 +22,7 @@ Mr. Stone
 
 > **new BodyEventMiddleware**(`options`): [`BodyEventMiddleware`](BodyEventMiddleware.md)
 
-Defined in: [node-http-adapter/src/middleware/BodyEventMiddleware.ts:39](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/middleware/BodyEventMiddleware.ts#L39)
+Defined in: [node-http-adapter/src/middleware/BodyEventMiddleware.ts:39](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/middleware/BodyEventMiddleware.ts#L39)
 
 Create a BodyEventMiddleware.
 
@@ -46,7 +46,7 @@ Options for creating the BodyEventMiddleware.
 
 > **handle**(`context`, `next`): `Promise`\<[`NodeHttpAdapterResponseBuilder`](../../../declarations/type-aliases/NodeHttpAdapterResponseBuilder.md)\>
 
-Defined in: [node-http-adapter/src/middleware/BodyEventMiddleware.ts:52](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/middleware/BodyEventMiddleware.ts#L52)
+Defined in: [node-http-adapter/src/middleware/BodyEventMiddleware.ts:52](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/middleware/BodyEventMiddleware.ts#L52)
 
 Handles the incoming event, processes it, and invokes the next middleware in the pipeline.
 

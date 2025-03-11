@@ -1,3 +1,4 @@
+import os from 'os'
 import {
   IncomingHttpEvent,
   OutgoingHttpResponse,
@@ -19,12 +20,14 @@ import {
   AdapterEventBuilder,
   defaultLoggerResolver
 } from '@stone-js/core'
+import chalk from 'chalk'
 import connect from 'connect'
 import { createServer as createHttpsServer } from 'node:https'
 import { ServerResponseWrapper } from './ServerResponseWrapper'
 import { NodeHttpAdapterError } from './errors/NodeHttpAdapterError'
 import { createServer, IncomingMessage, ServerResponse } from 'node:http'
 
+/* eslint-disable @typescript-eslint/no-misused-promises */
 /**
  * Node.js HTTP Adapter for the Stone.js framework.
  *
@@ -103,16 +106,17 @@ NodeHttpAdapterContext
    * console.log('Server is running');
    * ```
    */
-  public async run<ExecutionResultType = undefined>(): Promise<ExecutionResultType> {
+  public async run<ExecutionResultType = NodeHttpServer>(): Promise<ExecutionResultType> {
     await this.onStart()
 
-    await new Promise((resolve, reject) => {
+    return await new Promise((resolve, reject) => {
       this.server
         .once('error', (error) => reject(error))
-        .listen(Number(this.url.port), this.url.hostname, () => resolve(0))
+        .listen(Number(this.url.port), this.url.hostname, () => {
+          this.printUrls()
+          resolve(this.server as ExecutionResultType)
+        })
     })
-
-    return undefined as ExecutionResultType
   }
 
   /**
@@ -148,11 +152,11 @@ NodeHttpAdapterContext
   protected async eventListener (rawEvent: IncomingMessage, rawResponse: ServerResponse): Promise<ServerResponse> {
     rawEvent.on('error', (error) => {
       rawResponse.statusCode = 400
-      this.logger.error('Error in incoming event.', { error })
+      this.logger.error(chalk.red('Error in incoming event.'), { error })
     })
 
     rawResponse.on('error', (error) => {
-      this.logger.error('Error in outgoing response.', { error })
+      this.logger.error(chalk.red('Error in outgoing response.'), { error })
     })
 
     const incomingEventBuilder = AdapterEventBuilder.create<IncomingHttpEventOptions, IncomingHttpEvent>({
@@ -197,7 +201,6 @@ NodeHttpAdapterContext
       .get<ServerMiddleware[]>('stone.adapter.serverMiddleware', [])
       .forEach((middleware) => app.use(middleware))
 
-    /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
     app.use(async (message, response) => await this.eventListener(message, response))
 
     if (this.blueprint.get('stone.adapter.isSsl') === true) {
@@ -217,15 +220,14 @@ NodeHttpAdapterContext
    */
   protected setupGlobalErrorHandlers (): void {
     process
-    /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
       .on('uncaughtException', async (error) => {
-        this.logger.error('Uncaught exception detected. Shutting down...', { error })
+        this.logger.error(chalk.red('Uncaught exception detected. Shutting down the server...'), { error })
         await this.executeHooks('onStop')
         this.server.close(() => process.exit(1))
         setTimeout(() => process.abort(), 1000).unref()
       })
       .on('unhandledRejection', (reason, promise) => {
-        this.logger.error('Unhandled promise rejection detected.', {
+        this.logger.error(chalk.red('Unhandled promise rejection detected.'), {
           promise: String(promise),
           reason: String(reason)
         })
@@ -234,15 +236,49 @@ NodeHttpAdapterContext
 
   /**
    * Sets up a shutdown listener to gracefully stop the server on SIGINT.
-   *
-   * @protected
    */
   protected setupShutdownHook (): void {
-    /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
-    process.on('SIGINT', async () => {
-      this.logger.info('Received SIGINT. Initiating graceful shutdown...')
+    const shutdown = async (): Promise<void> => {
       await this.executeHooks('onStop')
       this.server.close(() => process.exit(0))
-    })
+    }
+
+    process
+      .on('SIGINT', shutdown)
+      .on('SIGTERM', shutdown)
+  }
+
+  /**
+   * Prints the server URLs to the console.
+   */
+  private printUrls (): void {
+    if (this.blueprint.get('stone.adapter.printUrls') === true) {
+      const localUrl = this.url.href
+      const networkUrl = this.getNetworkUrl(this.url)
+
+      this.logger.info(`
+  ${chalk.green('➜')}  ${chalk.white('Local:')}    ${chalk.blue(localUrl)}
+  ${chalk.green('➜')}  ${chalk.gray('Network:')}  ${chalk.blue(networkUrl ?? 'Unavailable')}
+  ${chalk.green('➜')}  ${chalk.gray('Press CTRL+C to stop')}
+      `)
+    }
+  }
+
+  /**
+   * Gets the network URL for the server.
+   *
+   * @param url - The server URL.
+   * @returns The network URL or `undefined` if not found.
+   */
+  private getNetworkUrl (url: URL): string | undefined {
+    const interfaces = os.networkInterfaces()
+
+    for (const key of Object.keys(interfaces)) {
+      for (const net of interfaces[key] ?? []) {
+        if (net.family === 'IPv4' && !net.internal) {
+          return url.href.replace('localhost', net.address)
+        }
+      }
+    }
   }
 }

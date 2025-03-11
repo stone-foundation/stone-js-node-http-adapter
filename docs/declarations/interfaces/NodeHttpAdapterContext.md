@@ -6,7 +6,7 @@
 
 # Interface: NodeHttpAdapterContext
 
-Defined in: [node-http-adapter/src/declarations.ts:49](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/declarations.ts#L49)
+Defined in: [node-http-adapter/src/declarations.ts:49](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/declarations.ts#L49)
 
 Extends the `AdapterContext` interface to provide additional properties for the Node.js HTTP adapter.
 
@@ -23,7 +23,7 @@ Stone.js adapter context properties.
 
 > `readonly` **executionContext**: [`NodeHttpServer`](../type-aliases/NodeHttpServer.md)
 
-Defined in: core/dist/index.d.ts:1656
+Defined in: core/dist/index.d.ts:1716
 
 The executionContext of type ExecutionContextType.
 
@@ -37,7 +37,7 @@ The executionContext of type ExecutionContextType.
 
 > `optional` **incomingEvent**: `IncomingHttpEvent`
 
-Defined in: core/dist/index.d.ts:1660
+Defined in: core/dist/index.d.ts:1720
 
 The incomingEvent associated with the executionContext.
 
@@ -51,7 +51,7 @@ The incomingEvent associated with the executionContext.
 
 > `readonly` **incomingEventBuilder**: `IAdapterEventBuilder`\<`IncomingHttpEventOptions`, `IncomingHttpEvent`\>
 
-Defined in: core/dist/index.d.ts:1668
+Defined in: core/dist/index.d.ts:1728
 
 The incomingEventBuilder.
 
@@ -65,7 +65,7 @@ The incomingEventBuilder.
 
 > `optional` **outgoingResponse**: `OutgoingHttpResponse`
 
-Defined in: core/dist/index.d.ts:1664
+Defined in: core/dist/index.d.ts:1724
 
 The outgoingResponse associated with the executionContext.
 
@@ -79,7 +79,7 @@ The outgoingResponse associated with the executionContext.
 
 > `readonly` **rawEvent**: `IncomingMessage`
 
-Defined in: core/dist/index.d.ts:1648
+Defined in: core/dist/index.d.ts:1708
 
 The rawEvent of type RawEventType.
 
@@ -93,7 +93,7 @@ The rawEvent of type RawEventType.
 
 > **rawResponse**: `ServerResponse`
 
-Defined in: [node-http-adapter/src/declarations.ts:60](https://github.com/stonemjs/node-http-adapter/blob/88c1ec7a02e567d3a955b5e02ef59e5d8858f965/src/declarations.ts#L60)
+Defined in: [node-http-adapter/src/declarations.ts:60](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/declarations.ts#L60)
 
 The raw HTTP response object associated with the current request.
 
@@ -107,7 +107,7 @@ The raw HTTP response object associated with the current request.
 
 > `readonly` **rawResponseBuilder**: `IAdapterEventBuilder`\<`RawResponseOptions`, `IRawResponseWrapper`\<`ServerResponse`\>\>
 
-Defined in: core/dist/index.d.ts:1672
+Defined in: core/dist/index.d.ts:1732
 
 The rawResponseBuilder.
 
