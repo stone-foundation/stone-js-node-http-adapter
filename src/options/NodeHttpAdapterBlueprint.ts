@@ -2,7 +2,7 @@ import { NODE_HTTP_PLATFORM } from '../constants'
 import { nodeHttpAdapterResolver } from '../resolvers'
 import { IncomingMessage, ServerResponse } from 'node:http'
 import { NodeHttpErrorHandler } from '../NodeHttpErrorHandler'
-import { metaAdapterConfigMiddlewares } from '../middleware/configMiddleware'
+import { metaAdapterBlueprintMiddleware } from '../middleware/BlueprintMiddleware'
 import { MetaIncomingEventMiddleware } from '../middleware/IncomingEventMiddleware'
 import { NodeHttpServer, NodeServerOptions, ServerMiddleware } from '../declarations'
 import { MetaServerResponseMiddleware } from '../middleware/ServerResponseMiddleware'
@@ -83,8 +83,8 @@ export interface NodeHttpAdapterBlueprint extends StoneBlueprint<IncomingHttpEve
 export const nodeHttpAdapterBlueprint: NodeHttpAdapterBlueprint = {
   stone: {
     ...httpCoreBlueprint.stone,
-    builder: {
-      middleware: metaAdapterConfigMiddlewares
+    blueprint: {
+      middleware: metaAdapterBlueprintMiddleware
     },
     adapters: [
       {

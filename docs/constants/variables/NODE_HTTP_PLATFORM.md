@@ -8,7 +8,7 @@
 
 > `const` **NODE\_HTTP\_PLATFORM**: `"node_http"` = `'node_http'`
 
-Defined in: [node-http-adapter/src/constants.ts:8](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/constants.ts#L8)
+Defined in: [node-http-adapter/src/constants.ts:8](https://github.com/stonemjs/node-http-adapter/blob/5be13a78fd98c615af1c99836e662ccd61afb0e8/src/constants.ts#L8)
 
 A constant representing the Node.js HTTP platform identifier.
 

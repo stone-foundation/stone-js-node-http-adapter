@@ -6,7 +6,7 @@
 
 # Interface: NodeHttpAdapterConfig
 
-Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:59](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/options/NodeHttpAdapterBlueprint.ts#L59)
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:59](https://github.com/stonemjs/node-http-adapter/blob/5be13a78fd98c615af1c99836e662ccd61afb0e8/src/options/NodeHttpAdapterBlueprint.ts#L59)
 
 Represents the NodeHttpAdapter configuration options for the application.
 
@@ -20,7 +20,7 @@ Represents the NodeHttpAdapter configuration options for the application.
 
 > `optional` **adapter**: `Partial`\<`AdapterConfig`\<`IncomingHttpEvent`, `OutgoingHttpResponse`\>\>
 
-Defined in: core/dist/index.d.ts:520
+Defined in: core/dist/index.d.ts:549
 
 Current Adapter configurations for the application.
 This key allow you to specify the current adapter with the alias key.
@@ -35,9 +35,10 @@ This key allow you to specify the current adapter with the alias key.
 
 > **adapters**: [`NodeHttpAdapterAdapterConfig`](NodeHttpAdapterAdapterConfig.md)[]
 
-Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:61](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/options/NodeHttpAdapterBlueprint.ts#L61)
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:61](https://github.com/stonemjs/node-http-adapter/blob/5be13a78fd98c615af1c99836e662ccd61afb0e8/src/options/NodeHttpAdapterBlueprint.ts#L61)
 
 Adapter configurations for the application.
+List of all adapters used in the application.
 
 #### Overrides
 
@@ -49,7 +50,7 @@ Adapter configurations for the application.
 
 > `optional` **aliases**: `Record`\<`string`, `any`\>
 
-Defined in: core/dist/index.d.ts:555
+Defined in: core/dist/index.d.ts:585
 
 Class aliases to be registered when the application starts.
 These aliases provide shorthand references to commonly used classes.
@@ -60,17 +61,17 @@ These aliases provide shorthand references to commonly used classes.
 
 ***
 
-### builder?
+### blueprint?
 
-> `optional` **builder**: `BuilderConfig`\<`any`\>
+> `optional` **blueprint**: `BlueprintConfig`\<`any`\>
 
-Defined in: core/dist/index.d.ts:515
+Defined in: core/dist/index.d.ts:544
 
-Configuration options for building the application, including middleware and pipe priorities.
+Configuration options for building the application blueprint, including middleware and pipe priorities.
 
 #### Inherited from
 
-`Partial.builder`
+`Partial.blueprint`
 
 ***
 
@@ -78,7 +79,7 @@ Configuration options for building the application, including middleware and pip
 
 > `optional` **debug**: `boolean`
 
-Defined in: core/dist/index.d.ts:494
+Defined in: core/dist/index.d.ts:523
 
 Determines if the application is in debug mode.
 When enabled, detailed error messages with stack traces will be shown.
@@ -93,7 +94,7 @@ When enabled, detailed error messages with stack traces will be shown.
 
 > `optional` **env**: `Environment`
 
-Defined in: core/dist/index.d.ts:489
+Defined in: core/dist/index.d.ts:518
 
 The current environment in which the application is running.
 Possible values are development, production, and test.
@@ -108,7 +109,7 @@ Possible values are development, production, and test.
 
 > `optional` **fallback\_locale**: `string`
 
-Defined in: core/dist/index.d.ts:506
+Defined in: core/dist/index.d.ts:535
 
 The fallback locale used when a translation for the default locale is unavailable.
 
@@ -122,7 +123,7 @@ The fallback locale used when a translation for the default locale is unavailabl
 
 > **http**: `Partial`\<`HttpConfig`\>
 
-Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:60](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/options/NodeHttpAdapterBlueprint.ts#L60)
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:60](https://github.com/stonemjs/node-http-adapter/blob/5be13a78fd98c615af1c99836e662ccd61afb0e8/src/options/NodeHttpAdapterBlueprint.ts#L60)
 
 ***
 
@@ -130,9 +131,9 @@ Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:60](https
 
 > `optional` **kernel**: `KernelConfig`\<`IncomingHttpEvent`, `OutgoingHttpResponse`\>
 
-Defined in: core/dist/index.d.ts:528
+Defined in: core/dist/index.d.ts:558
 
-Global middleware settings for the application kernel.
+Kernel configurations for the application.
 
 #### Inherited from
 
@@ -144,7 +145,7 @@ Global middleware settings for the application kernel.
 
 > `optional` **lifecycleHooks**: `LifecycleHookType`\<`IBlueprint`\<`any`\>, `any`, `any`, `IncomingHttpEvent`, `OutgoingHttpResponse`\>
 
-Defined in: core/dist/index.d.ts:560
+Defined in: core/dist/index.d.ts:590
 
 Lifecycle hooks for the application.
 These hooks allow you to run custom code at different stages of the application lifecycle.
@@ -159,7 +160,7 @@ These hooks allow you to run custom code at different stages of the application 
 
 > `optional` **listeners**: `MetaEventListener`[]
 
-Defined in: core/dist/index.d.ts:541
+Defined in: core/dist/index.d.ts:571
 
 Event listeners to be automatically registered when the application starts.
 This allows you to specify functions to listen for specific events.
@@ -174,7 +175,7 @@ This allows you to specify functions to listen for specific events.
 
 > `optional` **liveConfigurations**: `MixedConfiguration`\<`any`\>[]
 
-Defined in: core/dist/index.d.ts:566
+Defined in: core/dist/index.d.ts:596
 
 Live configurations are loaded at each request.
 By default, configurations are loaded once when the application starts.
@@ -190,7 +191,7 @@ This is useful for defining dynamic configurations that do not require a restart
 
 > `optional` **locale**: `string`
 
-Defined in: core/dist/index.d.ts:502
+Defined in: core/dist/index.d.ts:531
 
 The default locale for the application.
 
@@ -204,7 +205,7 @@ The default locale for the application.
 
 > `optional` **logger**: `LoggerConfig`
 
-Defined in: core/dist/index.d.ts:532
+Defined in: core/dist/index.d.ts:562
 
 Logging settings, including the logger instance and error reporting configurations.
 
@@ -218,7 +219,7 @@ Logging settings, including the logger instance and error reporting configuratio
 
 > `optional` **name**: `string`
 
-Defined in: core/dist/index.d.ts:484
+Defined in: core/dist/index.d.ts:513
 
 The name of the application.
 
@@ -232,7 +233,7 @@ The name of the application.
 
 > `optional` **providers**: `MixedServiceProvider`[]
 
-Defined in: core/dist/index.d.ts:550
+Defined in: core/dist/index.d.ts:580
 
 Service providers to be automatically loaded for each request to the application.
 
@@ -246,7 +247,7 @@ Service providers to be automatically loaded for each request to the application
 
 > `optional` **secret**: `string`
 
-Defined in: core/dist/index.d.ts:511
+Defined in: core/dist/index.d.ts:540
 
 A secret key used for encryption purposes throughout the application.
 This key should be kept secure.
@@ -261,7 +262,7 @@ This key should be kept secure.
 
 > `optional` **services**: `MetaService`[]
 
-Defined in: core/dist/index.d.ts:536
+Defined in: core/dist/index.d.ts:566
 
 Services to be automatically registered when the application starts.
 
@@ -275,7 +276,7 @@ Services to be automatically registered when the application starts.
 
 > `optional` **subscribers**: `MixedEventSubscriber`[]
 
-Defined in: core/dist/index.d.ts:546
+Defined in: core/dist/index.d.ts:576
 
 Subscribers to be automatically registered when the application starts.
 Subscribers are used for handling and responding to events.
@@ -290,7 +291,7 @@ Subscribers are used for handling and responding to events.
 
 > `optional` **timezone**: `string`
 
-Defined in: core/dist/index.d.ts:498
+Defined in: core/dist/index.d.ts:527
 
 The default timezone for the application.
 

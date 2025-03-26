@@ -8,7 +8,7 @@
 
 > `const` **nodeHttpAdapterBlueprint**: [`NodeHttpAdapterBlueprint`](../interfaces/NodeHttpAdapterBlueprint.md)
 
-Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:83](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/options/NodeHttpAdapterBlueprint.ts#L83)
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:83](https://github.com/stonemjs/node-http-adapter/blob/5be13a78fd98c615af1c99836e662ccd61afb0e8/src/options/NodeHttpAdapterBlueprint.ts#L83)
 
 Node HTTP adapter options.
 

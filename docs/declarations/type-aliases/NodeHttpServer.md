@@ -8,7 +8,7 @@
 
 > **NodeHttpServer**: `HttpsServer`\<*typeof* `IncomingMessage`, *typeof* `ServerResponse`\> \| `Server`\<*typeof* `IncomingMessage`, *typeof* `ServerResponse`\>
 
-Defined in: [node-http-adapter/src/declarations.ts:39](https://github.com/stonemjs/node-http-adapter/blob/a82d44fdef9d2985fec1e632575aee7065c1c3af/src/declarations.ts#L39)
+Defined in: [node-http-adapter/src/declarations.ts:39](https://github.com/stonemjs/node-http-adapter/blob/5be13a78fd98c615af1c99836e662ccd61afb0e8/src/declarations.ts#L39)
 
 Represents a Node.js HTTP or HTTPS server.
 
