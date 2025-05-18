@@ -12,4 +12,5 @@
 
 ## Functions
 
+- [SetNodeHttpDefaultAdapterMiddleware](functions/SetNodeHttpDefaultAdapterMiddleware.md)
 - [SetNodeHttpResponseResolverMiddleware](functions/SetNodeHttpResponseResolverMiddleware.md)

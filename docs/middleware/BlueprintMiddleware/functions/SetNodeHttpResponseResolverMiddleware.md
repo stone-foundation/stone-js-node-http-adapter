@@ -8,7 +8,7 @@
 
 > **SetNodeHttpResponseResolverMiddleware**(`context`, `next`): `Promise`\<`IBlueprint`\>
 
-Defined in: node-http-adapter/src/middleware/BlueprintMiddleware.ts:19
+Defined in: [node-http-adapter/src/middleware/BlueprintMiddleware.ts:19](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/middleware/BlueprintMiddleware.ts#L19)
 
 Middleware to dynamically set response resolver for adapter.
 

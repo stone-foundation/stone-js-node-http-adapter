@@ -1,4 +1,3 @@
-import os from 'os'
 import {
   IncomingHttpEvent,
   OutgoingHttpResponse,
@@ -22,6 +21,7 @@ import {
 } from '@stone-js/core'
 import chalk from 'chalk'
 import connect from 'connect'
+import { networkInterfaces } from 'node:os'
 import { createServer as createHttpsServer } from 'node:https'
 import { ServerResponseWrapper } from './ServerResponseWrapper'
 import { NodeHttpAdapterError } from './errors/NodeHttpAdapterError'
@@ -271,7 +271,7 @@ NodeHttpAdapterContext
    * @returns The network URL or `undefined` if not found.
    */
   private getNetworkUrl (url: URL): string | undefined {
-    const interfaces = os.networkInterfaces()
+    const interfaces = networkInterfaces()
 
     for (const key of Object.keys(interfaces)) {
       for (const net of interfaces[key] ?? []) {

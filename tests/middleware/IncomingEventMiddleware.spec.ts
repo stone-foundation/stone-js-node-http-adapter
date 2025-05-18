@@ -46,7 +46,8 @@ describe('IncomingEventMiddleware', () => {
       },
       rawResponse: {},
       incomingEventBuilder: {
-        add: vi.fn().mockReturnThis()
+        add: vi.fn().mockReturnThis(),
+        addIf: vi.fn().mockReturnThis()
       }
     } as unknown as NodeHttpAdapterContext
 
@@ -82,7 +83,7 @@ describe('IncomingEventMiddleware', () => {
 
     expect(next).toHaveBeenCalledWith(mockContext)
     expect(mockContext.incomingEventBuilder?.add).toHaveBeenCalledWith('ips', [])
-    expect(mockContext.incomingEventBuilder?.add).toHaveBeenCalledWith('method', 'GET')
+    expect(mockContext.incomingEventBuilder?.addIf).toHaveBeenCalledWith('method', 'GET')
     expect(mockContext.incomingEventBuilder?.add).toHaveBeenCalledWith('url', expect.any(URL))
     expect(mockContext.incomingEventBuilder?.add).toHaveBeenCalledWith('cookies', { testCookie: 'value' })
     expect(mockContext.incomingEventBuilder?.add).toHaveBeenCalledWith('headers', mockContext.rawEvent?.headers)

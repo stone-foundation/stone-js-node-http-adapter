@@ -6,7 +6,7 @@
 
 # Class: NodeHttpAdapterError
 
-Defined in: [node-http-adapter/src/errors/NodeHttpAdapterError.ts:6](https://github.com/stonemjs/node-http-adapter/blob/5be13a78fd98c615af1c99836e662ccd61afb0e8/src/errors/NodeHttpAdapterError.ts#L6)
+Defined in: [node-http-adapter/src/errors/NodeHttpAdapterError.ts:6](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/errors/NodeHttpAdapterError.ts#L6)
 
 Custom error for node http adapter operations.
 
@@ -20,7 +20,7 @@ Custom error for node http adapter operations.
 
 > **new NodeHttpAdapterError**(`message`, `options`?): [`NodeHttpAdapterError`](NodeHttpAdapterError.md)
 
-Defined in: [node-http-adapter/src/errors/NodeHttpAdapterError.ts:7](https://github.com/stonemjs/node-http-adapter/blob/5be13a78fd98c615af1c99836e662ccd61afb0e8/src/errors/NodeHttpAdapterError.ts#L7)
+Defined in: [node-http-adapter/src/errors/NodeHttpAdapterError.ts:7](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/errors/NodeHttpAdapterError.ts#L7)
 
 #### Parameters
 
@@ -46,7 +46,7 @@ Defined in: [node-http-adapter/src/errors/NodeHttpAdapterError.ts:7](https://git
 
 > `readonly` `optional` **cause**: `Error`
 
-Defined in: core/dist/index.d.ts:3556
+Defined in: core/dist/index.d.ts:3372
 
 #### Inherited from
 
@@ -58,7 +58,7 @@ Defined in: core/dist/index.d.ts:3556
 
 > `readonly` `optional` **code**: `string`
 
-Defined in: core/dist/index.d.ts:3555
+Defined in: core/dist/index.d.ts:3371
 
 #### Inherited from
 
@@ -70,7 +70,7 @@ Defined in: core/dist/index.d.ts:3555
 
 > `readonly` `optional` **metadata**: `unknown`
 
-Defined in: core/dist/index.d.ts:3557
+Defined in: core/dist/index.d.ts:3373
 
 #### Inherited from
 
@@ -82,7 +82,7 @@ Defined in: core/dist/index.d.ts:3557
 
 > **toString**(`multiline`?): `string`
 
-Defined in: core/dist/index.d.ts:3578
+Defined in: core/dist/index.d.ts:3394
 
 Converts the error to a formatted string representation.
 
@@ -110,7 +110,7 @@ A formatted error string.
 
 > `static` **create**\<`T`\>(`message`, `options`?): `T`
 
-Defined in: core/dist/index.d.ts:3564
+Defined in: core/dist/index.d.ts:3380
 
 Create a RuntimeError.
 

@@ -1,7 +1,7 @@
 import { File } from '@stone-js/filesystem'
 import { NODE_HTTP_PLATFORM } from '../constants'
 import { MetaPipe, NextPipe } from '@stone-js/pipeline'
-import { ClassType, IBlueprint, BlueprintContext } from '@stone-js/core'
+import { ClassType, IBlueprint, BlueprintContext, AdapterConfig } from '@stone-js/core'
 import { BinaryFileResponse, OutgoingHttpResponse, OutgoingHttpResponseOptions } from '@stone-js/http-core'
 
 /**
@@ -35,11 +35,40 @@ export const SetNodeHttpResponseResolverMiddleware = async (
 }
 
 /**
+ * Middleware to dynamically set node http adapter as the default adapter.
+ *
+ * @param context - The configuration context containing modules and blueprint.
+ * @param next - The next pipeline function to continue processing.
+ * @returns The updated blueprint or a promise resolving to it.
+ *
+ * @example
+ * ```typescript
+ * SetNodeHttpDefaultAdapterMiddleware(context, next)
+ * ```
+ */
+export const SetNodeHttpDefaultAdapterMiddleware = async (
+  context: BlueprintContext<IBlueprint, ClassType>,
+  next: NextPipe<BlueprintContext<IBlueprint, ClassType>, IBlueprint>
+): Promise<IBlueprint> => {
+  const hasDefaultAdapter = context.blueprint.get<AdapterConfig[]>('stone.adapters', []).some((adapter) => adapter.default === true)
+  if (!hasDefaultAdapter) {
+    context.blueprint.get<AdapterConfig[]>('stone.adapters', []).forEach((adapter) => {
+      if (adapter.platform === NODE_HTTP_PLATFORM) {
+        adapter.default = true
+      }
+    })
+  }
+
+  return await next(context)
+}
+
+/**
  * Configuration for adapter processing middleware.
  *
  * This array defines a list of middleware pipes, each with a `pipe` function and a `priority`.
  * These pipes are executed in the order of their priority values, with lower values running first.
  */
 export const metaAdapterBlueprintMiddleware: Array<MetaPipe<BlueprintContext<IBlueprint, ClassType>, IBlueprint>> = [
+  { module: SetNodeHttpDefaultAdapterMiddleware, priority: 0 },
   { module: SetNodeHttpResponseResolverMiddleware, priority: 6 }
 ]

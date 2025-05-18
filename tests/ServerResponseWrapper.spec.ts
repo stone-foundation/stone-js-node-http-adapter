@@ -80,7 +80,7 @@ describe('ServerResponseWrapper', () => {
 
     expect(mockResponse.statusCode).toBe(200) // Default value
     expect(mockResponse.setHeaders).not.toHaveBeenCalled()
-    expect(mockResponse.end).not.toHaveBeenCalled()
+    expect(mockResponse.end).toHaveBeenCalled()
   })
 
   it('should handle missing options gracefully', async () => {
@@ -96,6 +96,6 @@ describe('ServerResponseWrapper', () => {
 
     expect(mockResponse.statusCode).toBe(200)
     expect(mockResponse.setHeaders).not.toHaveBeenCalled()
-    expect(mockResponse.end).not.toHaveBeenCalled()
+    expect(mockResponse.end).toHaveBeenCalled()
   })
 })

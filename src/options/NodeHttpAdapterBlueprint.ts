@@ -4,8 +4,8 @@ import { IncomingMessage, ServerResponse } from 'node:http'
 import { NodeHttpErrorHandler } from '../NodeHttpErrorHandler'
 import { metaAdapterBlueprintMiddleware } from '../middleware/BlueprintMiddleware'
 import { MetaIncomingEventMiddleware } from '../middleware/IncomingEventMiddleware'
-import { NodeHttpServer, NodeServerOptions, ServerMiddleware } from '../declarations'
 import { MetaServerResponseMiddleware } from '../middleware/ServerResponseMiddleware'
+import { NodeHttpServer, NodeServerOptions, ServerMiddleware } from '../declarations'
 import { AdapterConfig, AppConfig, defaultKernelResolver, StoneBlueprint } from '@stone-js/core'
 import { HttpConfig, IncomingHttpEvent, IncomingHttpEventOptions, OutgoingHttpResponse, httpCoreBlueprint } from '@stone-js/http-core'
 
@@ -91,6 +91,7 @@ export const nodeHttpAdapterBlueprint: NodeHttpAdapterBlueprint = {
         server: {},
         current: false,
         default: false,
+        variant: 'server',
         serverMiddleware: [],
         url: 'http://localhost:8080',
         platform: NODE_HTTP_PLATFORM,
