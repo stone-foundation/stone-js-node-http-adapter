@@ -1,8 +1,8 @@
-[**Node Adapter Documentation v0.0.21**](../README.md)
+[**Node Adapter Documentation**](../README.md)
 
 ***
 
-[Node Adapter Documentation](../modules.md) / NodeHttpErrorHandler
+[Node Adapter Documentation](../README.md) / NodeHttpErrorHandler
 
 # NodeHttpErrorHandler
 

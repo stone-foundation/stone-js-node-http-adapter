@@ -1,12 +1,12 @@
-[**Node Adapter Documentation v0.0.21**](../../../README.md)
+[**Node Adapter Documentation**](../../../README.md)
 
 ***
 
-[Node Adapter Documentation](../../../modules.md) / [middleware/FilesEventMiddleware](../README.md) / FilesEventMiddleware
+[Node Adapter Documentation](../../../README.md) / [middleware/FilesEventMiddleware](../README.md) / FilesEventMiddleware
 
 # Class: FilesEventMiddleware
 
-Defined in: [node-http-adapter/src/middleware/FilesEventMiddleware.ts:12](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/middleware/FilesEventMiddleware.ts#L12)
+Defined in: [node-http-adapter/src/middleware/FilesEventMiddleware.ts:12](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/middleware/FilesEventMiddleware.ts#L12)
 
 Class representing a FilesEventMiddleware.
 
@@ -16,11 +16,11 @@ Mr. Stone <evensstone@gmail.com>
 
 ## Constructors
 
-### new FilesEventMiddleware()
+### Constructor
 
-> **new FilesEventMiddleware**(`options`): [`FilesEventMiddleware`](FilesEventMiddleware.md)
+> **new FilesEventMiddleware**(`options`): `FilesEventMiddleware`
 
-Defined in: [node-http-adapter/src/middleware/FilesEventMiddleware.ts:23](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/middleware/FilesEventMiddleware.ts#L23)
+Defined in: [node-http-adapter/src/middleware/FilesEventMiddleware.ts:23](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/middleware/FilesEventMiddleware.ts#L23)
 
 Create a FilesEventMiddleware.
 
@@ -36,7 +36,7 @@ Options for creating the FilesEventMiddleware.
 
 #### Returns
 
-[`FilesEventMiddleware`](FilesEventMiddleware.md)
+`FilesEventMiddleware`
 
 ## Methods
 
@@ -44,7 +44,7 @@ Options for creating the FilesEventMiddleware.
 
 > **handle**(`context`, `next`): `Promise`\<[`NodeHttpAdapterResponseBuilder`](../../../declarations/type-aliases/NodeHttpAdapterResponseBuilder.md)\>
 
-Defined in: [node-http-adapter/src/middleware/FilesEventMiddleware.ts:36](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/middleware/FilesEventMiddleware.ts#L36)
+Defined in: [node-http-adapter/src/middleware/FilesEventMiddleware.ts:36](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/middleware/FilesEventMiddleware.ts#L36)
 
 Handles the incoming event, processes it, and invokes the next middleware in the pipeline.
 

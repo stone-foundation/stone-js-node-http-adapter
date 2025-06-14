@@ -1,12 +1,12 @@
-[**Node Adapter Documentation v0.0.21**](../../../README.md)
+[**Node Adapter Documentation**](../../../README.md)
 
 ***
 
-[Node Adapter Documentation](../../../modules.md) / [middleware/BodyEventMiddleware](../README.md) / BodyEventMiddleware
+[Node Adapter Documentation](../../../README.md) / [middleware/BodyEventMiddleware](../README.md) / BodyEventMiddleware
 
 # Class: BodyEventMiddleware
 
-Defined in: [node-http-adapter/src/middleware/BodyEventMiddleware.ts:28](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/middleware/BodyEventMiddleware.ts#L28)
+Defined in: [node-http-adapter/src/middleware/BodyEventMiddleware.ts:28](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/middleware/BodyEventMiddleware.ts#L28)
 
 Class representing a BodyEventMiddleware.
 
@@ -18,11 +18,11 @@ Mr. Stone
 
 ## Constructors
 
-### new BodyEventMiddleware()
+### Constructor
 
-> **new BodyEventMiddleware**(`options`): [`BodyEventMiddleware`](BodyEventMiddleware.md)
+> **new BodyEventMiddleware**(`options`): `BodyEventMiddleware`
 
-Defined in: [node-http-adapter/src/middleware/BodyEventMiddleware.ts:39](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/middleware/BodyEventMiddleware.ts#L39)
+Defined in: [node-http-adapter/src/middleware/BodyEventMiddleware.ts:39](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/middleware/BodyEventMiddleware.ts#L39)
 
 Create a BodyEventMiddleware.
 
@@ -38,7 +38,7 @@ Options for creating the BodyEventMiddleware.
 
 #### Returns
 
-[`BodyEventMiddleware`](BodyEventMiddleware.md)
+`BodyEventMiddleware`
 
 ## Methods
 
@@ -46,7 +46,7 @@ Options for creating the BodyEventMiddleware.
 
 > **handle**(`context`, `next`): `Promise`\<[`NodeHttpAdapterResponseBuilder`](../../../declarations/type-aliases/NodeHttpAdapterResponseBuilder.md)\>
 
-Defined in: [node-http-adapter/src/middleware/BodyEventMiddleware.ts:52](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/middleware/BodyEventMiddleware.ts#L52)
+Defined in: [node-http-adapter/src/middleware/BodyEventMiddleware.ts:52](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/middleware/BodyEventMiddleware.ts#L52)
 
 Handles the incoming event, processes it, and invokes the next middleware in the pipeline.
 

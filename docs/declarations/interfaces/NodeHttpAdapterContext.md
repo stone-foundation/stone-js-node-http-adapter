@@ -1,12 +1,12 @@
-[**Node Adapter Documentation v0.0.21**](../../README.md)
+[**Node Adapter Documentation**](../../README.md)
 
 ***
 
-[Node Adapter Documentation](../../modules.md) / [declarations](../README.md) / NodeHttpAdapterContext
+[Node Adapter Documentation](../../README.md) / [declarations](../README.md) / NodeHttpAdapterContext
 
 # Interface: NodeHttpAdapterContext
 
-Defined in: [node-http-adapter/src/declarations.ts:49](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/declarations.ts#L49)
+Defined in: [node-http-adapter/src/declarations.ts:49](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/declarations.ts#L49)
 
 Extends the `AdapterContext` interface to provide additional properties for the Node.js HTTP adapter.
 
@@ -23,7 +23,7 @@ Stone.js adapter context properties.
 
 > `readonly` **executionContext**: [`NodeHttpServer`](../type-aliases/NodeHttpServer.md)
 
-Defined in: core/dist/index.d.ts:1863
+Defined in: core/dist/index.d.ts:1867
 
 The executionContext of type ExecutionContextType.
 
@@ -37,7 +37,7 @@ The executionContext of type ExecutionContextType.
 
 > `optional` **incomingEvent**: `IncomingHttpEvent`
 
-Defined in: core/dist/index.d.ts:1867
+Defined in: core/dist/index.d.ts:1871
 
 The incomingEvent associated with the executionContext.
 
@@ -51,7 +51,7 @@ The incomingEvent associated with the executionContext.
 
 > `readonly` **incomingEventBuilder**: `IAdapterEventBuilder`\<`IncomingHttpEventOptions`, `IncomingHttpEvent`\>
 
-Defined in: core/dist/index.d.ts:1875
+Defined in: core/dist/index.d.ts:1879
 
 The incomingEventBuilder.
 
@@ -65,7 +65,7 @@ The incomingEventBuilder.
 
 > `optional` **outgoingResponse**: `OutgoingHttpResponse`
 
-Defined in: core/dist/index.d.ts:1871
+Defined in: core/dist/index.d.ts:1875
 
 The outgoingResponse associated with the executionContext.
 
@@ -79,7 +79,7 @@ The outgoingResponse associated with the executionContext.
 
 > `readonly` **rawEvent**: `IncomingMessage`
 
-Defined in: core/dist/index.d.ts:1855
+Defined in: core/dist/index.d.ts:1859
 
 The rawEvent of type RawEventType.
 
@@ -93,7 +93,7 @@ The rawEvent of type RawEventType.
 
 > **rawResponse**: `ServerResponse`
 
-Defined in: [node-http-adapter/src/declarations.ts:60](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/declarations.ts#L60)
+Defined in: [node-http-adapter/src/declarations.ts:60](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/declarations.ts#L60)
 
 The raw HTTP response object associated with the current request.
 
@@ -105,9 +105,9 @@ The raw HTTP response object associated with the current request.
 
 ### rawResponseBuilder
 
-> `readonly` **rawResponseBuilder**: `IAdapterEventBuilder`\<`RawResponseOptions`, `IRawResponseWrapper`\<`ServerResponse`\>\>
+> `readonly` **rawResponseBuilder**: `IAdapterEventBuilder`\<`RawResponseOptions`, `IRawResponseWrapper`\<`ServerResponse`\<`IncomingMessage`\>\>\>
 
-Defined in: core/dist/index.d.ts:1879
+Defined in: core/dist/index.d.ts:1883
 
 The rawResponseBuilder.
 

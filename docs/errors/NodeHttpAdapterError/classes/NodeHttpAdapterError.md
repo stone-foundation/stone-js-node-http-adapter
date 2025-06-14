@@ -1,12 +1,12 @@
-[**Node Adapter Documentation v0.0.21**](../../../README.md)
+[**Node Adapter Documentation**](../../../README.md)
 
 ***
 
-[Node Adapter Documentation](../../../modules.md) / [errors/NodeHttpAdapterError](../README.md) / NodeHttpAdapterError
+[Node Adapter Documentation](../../../README.md) / [errors/NodeHttpAdapterError](../README.md) / NodeHttpAdapterError
 
 # Class: NodeHttpAdapterError
 
-Defined in: [node-http-adapter/src/errors/NodeHttpAdapterError.ts:6](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/errors/NodeHttpAdapterError.ts#L6)
+Defined in: [node-http-adapter/src/errors/NodeHttpAdapterError.ts:6](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/errors/NodeHttpAdapterError.ts#L6)
 
 Custom error for node http adapter operations.
 
@@ -16,11 +16,11 @@ Custom error for node http adapter operations.
 
 ## Constructors
 
-### new NodeHttpAdapterError()
+### Constructor
 
-> **new NodeHttpAdapterError**(`message`, `options`?): [`NodeHttpAdapterError`](NodeHttpAdapterError.md)
+> **new NodeHttpAdapterError**(`message`, `options?`): `NodeHttpAdapterError`
 
-Defined in: [node-http-adapter/src/errors/NodeHttpAdapterError.ts:7](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/errors/NodeHttpAdapterError.ts#L7)
+Defined in: [node-http-adapter/src/errors/NodeHttpAdapterError.ts:7](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/errors/NodeHttpAdapterError.ts#L7)
 
 #### Parameters
 
@@ -34,7 +34,7 @@ Defined in: [node-http-adapter/src/errors/NodeHttpAdapterError.ts:7](https://git
 
 #### Returns
 
-[`NodeHttpAdapterError`](NodeHttpAdapterError.md)
+`NodeHttpAdapterError`
 
 #### Overrides
 
@@ -46,7 +46,7 @@ Defined in: [node-http-adapter/src/errors/NodeHttpAdapterError.ts:7](https://git
 
 > `readonly` `optional` **cause**: `Error`
 
-Defined in: core/dist/index.d.ts:3372
+Defined in: core/dist/index.d.ts:3555
 
 #### Inherited from
 
@@ -58,7 +58,7 @@ Defined in: core/dist/index.d.ts:3372
 
 > `readonly` `optional` **code**: `string`
 
-Defined in: core/dist/index.d.ts:3371
+Defined in: core/dist/index.d.ts:3554
 
 #### Inherited from
 
@@ -70,7 +70,7 @@ Defined in: core/dist/index.d.ts:3371
 
 > `readonly` `optional` **metadata**: `unknown`
 
-Defined in: core/dist/index.d.ts:3373
+Defined in: core/dist/index.d.ts:3556
 
 #### Inherited from
 
@@ -80,9 +80,9 @@ Defined in: core/dist/index.d.ts:3373
 
 ### toString()
 
-> **toString**(`multiline`?): `string`
+> **toString**(`multiline?`): `string`
 
-Defined in: core/dist/index.d.ts:3394
+Defined in: core/dist/index.d.ts:3577
 
 Converts the error to a formatted string representation.
 
@@ -108,15 +108,17 @@ A formatted error string.
 
 ### create()
 
-> `static` **create**\<`T`\>(`message`, `options`?): `T`
+> `static` **create**\<`T`\>(`message`, `options?`): `T`
 
-Defined in: core/dist/index.d.ts:3380
+Defined in: core/dist/index.d.ts:3563
 
 Create a RuntimeError.
 
 #### Type Parameters
 
-• **T** *extends* `RuntimeError` = `RuntimeError`
+##### T
+
+`T` *extends* `RuntimeError` = `RuntimeError`
 
 #### Parameters
 

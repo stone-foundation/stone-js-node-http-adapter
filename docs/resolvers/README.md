@@ -1,11 +1,11 @@
-[**Node Adapter Documentation v0.0.21**](../README.md)
+[**Node Adapter Documentation**](../README.md)
 
 ***
 
-[Node Adapter Documentation](../modules.md) / resolvers
+[Node Adapter Documentation](../README.md) / resolvers
 
 # resolvers
 
-## Functions
+## Variables
 
-- [nodeHttpAdapterResolver](functions/nodeHttpAdapterResolver.md)
+- [nodeHttpAdapterResolver](variables/nodeHttpAdapterResolver.md)

@@ -7,7 +7,7 @@ import {
   defaultLoggerResolver,
   AdapterEventBuilderType
 } from '@stone-js/core'
-import mime from 'mime/lite'
+import mime from 'mime'
 import accepts from 'accepts'
 import statuses from 'statuses'
 import { NodeHttpServer } from './declarations'

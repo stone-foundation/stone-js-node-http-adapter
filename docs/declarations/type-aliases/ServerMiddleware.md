@@ -1,14 +1,14 @@
-[**Node Adapter Documentation v0.0.21**](../../README.md)
+[**Node Adapter Documentation**](../../README.md)
 
 ***
 
-[Node Adapter Documentation](../../modules.md) / [declarations](../README.md) / ServerMiddleware
+[Node Adapter Documentation](../../README.md) / [declarations](../README.md) / ServerMiddleware
 
 # Type Alias: ServerMiddleware()
 
-> **ServerMiddleware**: (`req`, `res`, `next`) => `void`
+> **ServerMiddleware** = (`req`, `res`, `next`) => `void`
 
-Defined in: [node-http-adapter/src/declarations.ts:79](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/declarations.ts#L79)
+Defined in: [node-http-adapter/src/declarations.ts:79](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/declarations.ts#L79)
 
 Represents a platform server middleware function that processes HTTP requests and responses.
 
@@ -32,7 +32,7 @@ The HTTP response object, extended with custom properties.
 
 ### next
 
-(`err`?) => `void`
+(`err?`) => `void`
 
 A callback to pass control to the next middleware. If called with an error, it invokes the error-handling middleware.
 

@@ -1,14 +1,14 @@
-[**Node Adapter Documentation v0.0.21**](../../../README.md)
+[**Node Adapter Documentation**](../../../README.md)
 
 ***
 
-[Node Adapter Documentation](../../../modules.md) / [decorators/NodeHttp](../README.md) / NodeHttp
+[Node Adapter Documentation](../../../README.md) / [decorators/NodeHttp](../README.md) / NodeHttp
 
 # Function: NodeHttp()
 
 > **NodeHttp**\<`T`\>(`options`): `ClassDecorator`
 
-Defined in: [node-http-adapter/src/decorators/NodeHttp.ts:39](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/decorators/NodeHttp.ts#L39)
+Defined in: [node-http-adapter/src/decorators/NodeHttp.ts:39](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/decorators/NodeHttp.ts#L39)
 
 A class decorator for registering a Node.js HTTP adapter in the Stone.js framework.
 
@@ -18,7 +18,9 @@ the `addBlueprint` utility.
 
 ## Type Parameters
 
-• **T** *extends* `ClassType` = `ClassType`
+### T
+
+`T` *extends* `ClassType` = `ClassType`
 
 The type of the class being decorated, defaulting to `ClassType`.
 

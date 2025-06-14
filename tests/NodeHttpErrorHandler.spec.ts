@@ -1,4 +1,4 @@
-import mime from 'mime/lite'
+import mime from 'mime'
 import { Mock } from 'vitest'
 import { HTTP_INTERNAL_SERVER_ERROR } from '@stone-js/http-core'
 import { NodeHttpErrorHandler } from '../src/NodeHttpErrorHandler'
@@ -6,12 +6,14 @@ import { AdapterErrorContext, ILogger, IBlueprint } from '@stone-js/core'
 
 const MockAcceptsType: any = vi.fn(() => 'json')
 
+vi.mock('node:process')
+
 vi.mock('accepts', () => ({
   type: vi.fn(() => 'json'),
   default: () => ({ type: MockAcceptsType })
 }))
 
-vi.mock('mime/lite', () => ({
+vi.mock('mime', () => ({
   getType: vi.fn(() => 'application/json'),
   default: { getType: vi.fn(() => 'application/json') }
 }))
@@ -30,6 +32,8 @@ describe('NodeHttpErrorHandler', () => {
     mockLogger = {
       error: vi.fn()
     } as unknown as ILogger
+
+    process.exit = vi.fn()
 
     mockBlueprint = {
       get: () => () => mockLogger

@@ -1,12 +1,12 @@
-[**Node Adapter Documentation v0.0.21**](../../../README.md)
+[**Node Adapter Documentation**](../../../README.md)
 
 ***
 
-[Node Adapter Documentation](../../../modules.md) / [options/NodeHttpAdapterBlueprint](../README.md) / NodeHttpAdapterAdapterConfig
+[Node Adapter Documentation](../../../README.md) / [options/NodeHttpAdapterBlueprint](../README.md) / NodeHttpAdapterAdapterConfig
 
 # Interface: NodeHttpAdapterAdapterConfig
 
-Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:19](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/options/NodeHttpAdapterBlueprint.ts#L19)
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:19](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/options/NodeHttpAdapterBlueprint.ts#L19)
 
 NodeHttpAdapterAdapterConfig Interface.
 
@@ -69,7 +69,7 @@ Optional property.
 
 ### errorHandlers
 
-> **errorHandlers**: `Record`\<`string`, `MetaAdapterErrorHandler`\<`IncomingMessage`, `ServerResponse`, [`NodeHttpServer`](../../../declarations/type-aliases/NodeHttpServer.md)\>\>
+> **errorHandlers**: `Record`\<`string`, `MetaAdapterErrorHandler`\<`IncomingMessage`, `ServerResponse`\<`IncomingMessage`\>, [`NodeHttpServer`](../../../declarations/type-aliases/NodeHttpServer.md)\>\>
 
 Defined in: core/dist/index.d.ts:454
 
@@ -100,7 +100,7 @@ The event handler resolver used to create instances of the event handler.
 
 > `optional` **isSsl**: `boolean`
 
-Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:35](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/options/NodeHttpAdapterBlueprint.ts#L35)
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:35](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/options/NodeHttpAdapterBlueprint.ts#L35)
 
 Determines if the server should use SSL.
 
@@ -108,7 +108,7 @@ Determines if the server should use SSL.
 
 ### middleware
 
-> **middleware**: `AdapterMixedPipeType`\<`AdapterContext`\<`IncomingMessage`, `ServerResponse`, [`NodeHttpServer`](../../../declarations/type-aliases/NodeHttpServer.md), `IncomingHttpEvent`, `IncomingHttpEventOptions`, `OutgoingHttpResponse`\>, `ServerResponse`\>[]
+> **middleware**: `AdapterMixedPipeType`\<`AdapterContext`\<`IncomingMessage`, `ServerResponse`\<`IncomingMessage`\>, [`NodeHttpServer`](../../../declarations/type-aliases/NodeHttpServer.md), `IncomingHttpEvent`, `IncomingHttpEventOptions`, `OutgoingHttpResponse`\>, `ServerResponse`\<`IncomingMessage`\>\>[]
 
 Defined in: core/dist/index.d.ts:445
 
@@ -140,7 +140,7 @@ This is used to categorize the adapter based on the environment or technology it
 
 > `optional` **printUrls**: `boolean`
 
-Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:45](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/options/NodeHttpAdapterBlueprint.ts#L45)
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:45](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/options/NodeHttpAdapterBlueprint.ts#L45)
 
 Determines if the server should print the URL when starting.
 
@@ -164,7 +164,7 @@ The class type resolver used to create instances of the adapter.
 
 > **server**: [`NodeServerOptions`](../../../declarations/type-aliases/NodeServerOptions.md)
 
-Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:40](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/options/NodeHttpAdapterBlueprint.ts#L40)
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:40](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/options/NodeHttpAdapterBlueprint.ts#L40)
 
 Additional server configurations for the Node HTTP server.
 
@@ -174,7 +174,7 @@ Additional server configurations for the Node HTTP server.
 
 > **serverMiddleware**: [`ServerMiddleware`](../../../declarations/type-aliases/ServerMiddleware.md)[]
 
-Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:53](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/options/NodeHttpAdapterBlueprint.ts#L53)
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:53](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/options/NodeHttpAdapterBlueprint.ts#L53)
 
 The platform middleware used for processing platform node HTTP requests and responses.
 This middleware is executed before the adapter middleware.
@@ -187,7 +187,7 @@ You can connect or express like middleware here to process request just before t
 
 > **url**: `string`
 
-Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:30](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/options/NodeHttpAdapterBlueprint.ts#L30)
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:30](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/options/NodeHttpAdapterBlueprint.ts#L30)
 
 The base URL used by the node http to run the application.
 

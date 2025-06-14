@@ -1,8 +1,8 @@
-[**Node Adapter Documentation v0.0.21**](../README.md)
+[**Node Adapter Documentation**](../README.md)
 
 ***
 
-[Node Adapter Documentation](../modules.md) / ServerResponseWrapper
+[Node Adapter Documentation](../README.md) / ServerResponseWrapper
 
 # ServerResponseWrapper
 

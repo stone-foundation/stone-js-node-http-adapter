@@ -1,12 +1,12 @@
-[**Node Adapter Documentation v0.0.21**](../../../README.md)
+[**Node Adapter Documentation**](../../../README.md)
 
 ***
 
-[Node Adapter Documentation](../../../modules.md) / [middleware/ServerResponseMiddleware](../README.md) / ServerResponseMiddleware
+[Node Adapter Documentation](../../../README.md) / [middleware/ServerResponseMiddleware](../README.md) / ServerResponseMiddleware
 
 # Class: ServerResponseMiddleware
 
-Defined in: [node-http-adapter/src/middleware/ServerResponseMiddleware.ts:14](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/middleware/ServerResponseMiddleware.ts#L14)
+Defined in: [node-http-adapter/src/middleware/ServerResponseMiddleware.ts:14](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/middleware/ServerResponseMiddleware.ts#L14)
 
 Middleware for handling server responses and transforming them into the appropriate HTTP responses.
 
@@ -15,11 +15,11 @@ and body content to the HTTP response.
 
 ## Constructors
 
-### new ServerResponseMiddleware()
+### Constructor
 
-> **new ServerResponseMiddleware**(`options`): [`ServerResponseMiddleware`](ServerResponseMiddleware.md)
+> **new ServerResponseMiddleware**(`options`): `ServerResponseMiddleware`
 
-Defined in: [node-http-adapter/src/middleware/ServerResponseMiddleware.ts:25](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/middleware/ServerResponseMiddleware.ts#L25)
+Defined in: [node-http-adapter/src/middleware/ServerResponseMiddleware.ts:25](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/middleware/ServerResponseMiddleware.ts#L25)
 
 Create a ServerResponseMiddleware.
 
@@ -35,7 +35,7 @@ Options for creating the ServerResponseMiddleware.
 
 #### Returns
 
-[`ServerResponseMiddleware`](ServerResponseMiddleware.md)
+`ServerResponseMiddleware`
 
 ## Methods
 
@@ -43,7 +43,7 @@ Options for creating the ServerResponseMiddleware.
 
 > **handle**(`context`, `next`): `Promise`\<[`NodeHttpAdapterResponseBuilder`](../../../declarations/type-aliases/NodeHttpAdapterResponseBuilder.md)\>
 
-Defined in: [node-http-adapter/src/middleware/ServerResponseMiddleware.ts:37](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/middleware/ServerResponseMiddleware.ts#L37)
+Defined in: [node-http-adapter/src/middleware/ServerResponseMiddleware.ts:37](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/middleware/ServerResponseMiddleware.ts#L37)
 
 Handles the outgoing response, processes it, and invokes the next middleware in the pipeline.
 

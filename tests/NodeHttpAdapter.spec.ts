@@ -63,7 +63,6 @@ vi.mock('connect', () => {
   }
 })
 
-
 describe('NodeHttpAdapter', () => {
   let mockServer: any
   let blueprint: Config
@@ -200,7 +199,7 @@ describe('NodeHttpAdapter', () => {
 
     process.emit('uncaughtException', mockError)
 
-    //@ts-expect-error - private access
+    // @ts-expect-error - private access
     expect(adapter.logger.error).toHaveBeenCalledWith(
       'Uncaught exception detected. Shutting down the server...',
       { error: mockError }
@@ -209,7 +208,7 @@ describe('NodeHttpAdapter', () => {
 
   it('should shutdown application on SIGINT', () => {
     const adapter = NodeHttpAdapter.create(blueprint)
-    //@ts-expect-error - private access
+    // @ts-expect-error - private access
     adapter.executeHooks = vi.fn()
 
     // @ts-expect-error
@@ -217,7 +216,7 @@ describe('NodeHttpAdapter', () => {
 
     process.emit('SIGINT')
 
-    //@ts-expect-error - private access
+    // @ts-expect-error - private access
     expect(adapter.executeHooks).toHaveBeenCalledWith('onStop')
   })
 
@@ -232,7 +231,7 @@ describe('NodeHttpAdapter', () => {
 
     process.emit('unhandledRejection', mockReason, mockPromise)
 
-    //@ts-expect-error - private access
+    // @ts-expect-error - private access
     expect(adapter.logger.error).toHaveBeenCalledWith(
       'Unhandled promise rejection detected.',
       { promise: String(mockPromise), reason: String(mockReason) }

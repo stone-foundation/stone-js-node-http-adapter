@@ -1,8 +1,8 @@
-[**Node Adapter Documentation v0.0.21**](../../README.md)
+[**Node Adapter Documentation**](../../README.md)
 
 ***
 
-[Node Adapter Documentation](../../modules.md) / middleware/BodyEventMiddleware
+[Node Adapter Documentation](../../README.md) / middleware/BodyEventMiddleware
 
 # middleware/BodyEventMiddleware
 

@@ -1,12 +1,12 @@
-[**Node Adapter Documentation v0.0.21**](../../../README.md)
+[**Node Adapter Documentation**](../../../README.md)
 
 ***
 
-[Node Adapter Documentation](../../../modules.md) / [options/NodeHttpAdapterBlueprint](../README.md) / NodeHttpAdapterConfig
+[Node Adapter Documentation](../../../README.md) / [options/NodeHttpAdapterBlueprint](../README.md) / NodeHttpAdapterConfig
 
 # Interface: NodeHttpAdapterConfig
 
-Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:59](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/options/NodeHttpAdapterBlueprint.ts#L59)
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:59](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/options/NodeHttpAdapterBlueprint.ts#L59)
 
 Represents the NodeHttpAdapter configuration options for the application.
 
@@ -22,7 +22,7 @@ Represents the NodeHttpAdapter configuration options for the application.
 
 ### adapter?
 
-> `optional` **adapter**: `Partial`\<`AdapterConfig`\<`IncomingHttpEvent`, `OutgoingHttpResponse`\>\>
+> `optional` **adapter**: `Partial`\<`AdapterConfig`\<`any`, `any`, `any`, `IncomingHttpEvent`, `any`, `OutgoingHttpResponse`\>\>
 
 Defined in: core/dist/index.d.ts:562
 
@@ -39,7 +39,7 @@ This key allow you to specify the current adapter with the alias key.
 
 > **adapters**: [`NodeHttpAdapterAdapterConfig`](NodeHttpAdapterAdapterConfig.md)[]
 
-Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:61](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/options/NodeHttpAdapterBlueprint.ts#L61)
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:61](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/options/NodeHttpAdapterBlueprint.ts#L61)
 
 Adapter configurations for the application.
 List of all adapters used in the application.
@@ -67,7 +67,7 @@ These aliases provide shorthand references to commonly used classes.
 
 ### blueprint?
 
-> `optional` **blueprint**: `BlueprintConfig`\<`any`\>
+> `optional` **blueprint**: `BlueprintConfig`\<`IBlueprint`\<`any`\>, `any`\>
 
 Defined in: core/dist/index.d.ts:557
 
@@ -127,7 +127,7 @@ The fallback locale used when a translation for the default locale is unavailabl
 
 > **http**: `Partial`\<`HttpConfig`\>
 
-Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:60](https://github.com/stonemjs/node-http-adapter/blob/500ec3a560895d12bcb5ee96646928549d5bf6fb/src/options/NodeHttpAdapterBlueprint.ts#L60)
+Defined in: [node-http-adapter/src/options/NodeHttpAdapterBlueprint.ts:60](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/options/NodeHttpAdapterBlueprint.ts#L60)
 
 ***
 
