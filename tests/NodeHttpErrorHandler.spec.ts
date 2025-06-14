@@ -33,7 +33,7 @@ describe('NodeHttpErrorHandler', () => {
       error: vi.fn()
     } as unknown as ILogger
 
-    process.exit = vi.fn()
+    vi.spyOn(process, 'exit').mockImplementation(() => 0 as never)
 
     mockBlueprint = {
       get: () => () => mockLogger

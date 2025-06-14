@@ -1,12 +1,4 @@
-[**Node Adapter Documentation**](../../../README.md)
-
-***
-
-[Node Adapter Documentation](../../../README.md) / [middleware/BodyEventMiddleware](../README.md) / BodyEventMiddleware
-
 # Class: BodyEventMiddleware
-
-Defined in: [node-http-adapter/src/middleware/BodyEventMiddleware.ts:28](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/middleware/BodyEventMiddleware.ts#L28)
 
 Class representing a BodyEventMiddleware.
 
@@ -20,9 +12,9 @@ Mr. Stone
 
 ### Constructor
 
-> **new BodyEventMiddleware**(`options`): `BodyEventMiddleware`
-
-Defined in: [node-http-adapter/src/middleware/BodyEventMiddleware.ts:39](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/middleware/BodyEventMiddleware.ts#L39)
+```ts
+new BodyEventMiddleware(options): BodyEventMiddleware;
+```
 
 Create a BodyEventMiddleware.
 
@@ -44,9 +36,9 @@ Options for creating the BodyEventMiddleware.
 
 ### handle()
 
-> **handle**(`context`, `next`): `Promise`\<[`NodeHttpAdapterResponseBuilder`](../../../declarations/type-aliases/NodeHttpAdapterResponseBuilder.md)\>
-
-Defined in: [node-http-adapter/src/middleware/BodyEventMiddleware.ts:52](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/middleware/BodyEventMiddleware.ts#L52)
+```ts
+handle(context, next): Promise<NodeHttpAdapterResponseBuilder>;
+```
 
 Handles the incoming event, processes it, and invokes the next middleware in the pipeline.
 
@@ -60,7 +52,7 @@ The adapter context containing the raw event, execution context, and other data.
 
 ##### next
 
-`NextPipe`\<[`NodeHttpAdapterContext`](../../../declarations/interfaces/NodeHttpAdapterContext.md), [`NodeHttpAdapterResponseBuilder`](../../../declarations/type-aliases/NodeHttpAdapterResponseBuilder.md)\>
+`NextMiddleware`\<[`NodeHttpAdapterContext`](../../../declarations/interfaces/NodeHttpAdapterContext.md), [`NodeHttpAdapterResponseBuilder`](../../../declarations/type-aliases/NodeHttpAdapterResponseBuilder.md)\>
 
 The next middleware to be invoked in the pipeline.
 

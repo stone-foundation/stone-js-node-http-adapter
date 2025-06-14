@@ -1,14 +1,8 @@
-[**Node Adapter Documentation**](../../README.md)
-
-***
-
-[Node Adapter Documentation](../../README.md) / [constants](../README.md) / NODE\_HTTP\_PLATFORM
-
 # Variable: NODE\_HTTP\_PLATFORM
 
-> `const` **NODE\_HTTP\_PLATFORM**: `"node_http"` = `'node_http'`
-
-Defined in: [node-http-adapter/src/constants.ts:8](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/constants.ts#L8)
+```ts
+const NODE_HTTP_PLATFORM: "node_http" = 'node_http';
+```
 
 A constant representing the Node.js HTTP platform identifier.
 

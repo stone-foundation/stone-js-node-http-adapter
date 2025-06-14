@@ -1,4 +1,3 @@
-import { Config } from '@stone-js/config'
 import { networkInterfaces } from 'node:os'
 import { AdapterEventBuilder } from '@stone-js/core'
 import { IncomingHttpEvent } from '@stone-js/http-core'
@@ -65,10 +64,18 @@ vi.mock('connect', () => {
 
 describe('NodeHttpAdapter', () => {
   let mockServer: any
-  let blueprint: Config
+  let blueprint: any
 
   beforeEach(() => {
-    blueprint = Config.create()
+    blueprint = {
+      values: {},
+      set: vi.fn((key, value) => {
+        blueprint.values[key] = value
+      }),
+      get: vi.fn((key, fallback) => blueprint.values[key] ?? fallback),
+      has: vi.fn((key) => key in blueprint.values),
+      getAll: vi.fn(() => blueprint.values),
+    }
     blueprint.set('stone.logger.resolver', () => ({
       info: vi.fn(),
       error: vi.fn()

@@ -1,8 +1,4 @@
-**Node Adapter Documentation**
-
-***
-
-# Node Adapter Documentation
+# Node HTTP Adapter
 
 ## Modules
 

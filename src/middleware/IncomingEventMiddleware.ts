@@ -7,10 +7,9 @@ import {
 } from '@stone-js/http-core'
 import proxyAddr from 'proxy-addr'
 import { TLSSocket } from 'node:tls'
-import { IBlueprint } from '@stone-js/core'
 import { IncomingMessage } from 'node:http'
-import { NextPipe } from '@stone-js/pipeline'
 import { NODE_HTTP_PLATFORM } from '../constants'
+import { IBlueprint, NextMiddleware } from '@stone-js/core'
 import { NodeHttpAdapterError } from '../errors/NodeHttpAdapterError'
 import { NodeHttpAdapterContext, NodeHttpAdapterResponseBuilder } from '../declarations'
 
@@ -65,7 +64,7 @@ export class IncomingEventMiddleware {
    * @returns A promise that resolves to the processed context.
    * @throws {NodeHttpAdapterError} If required components are missing in the context.
    */
-  async handle (context: NodeHttpAdapterContext, next: NextPipe<NodeHttpAdapterContext, NodeHttpAdapterResponseBuilder>): Promise<NodeHttpAdapterResponseBuilder> {
+  async handle (context: NodeHttpAdapterContext, next: NextMiddleware<NodeHttpAdapterContext, NodeHttpAdapterResponseBuilder>): Promise<NodeHttpAdapterResponseBuilder> {
     if ((context.rawEvent == null) || ((context.incomingEventBuilder?.add) == null)) {
       throw new NodeHttpAdapterError('The context is missing required components.')
     }

@@ -1,8 +1,7 @@
 import { File } from '@stone-js/filesystem'
 import { NODE_HTTP_PLATFORM } from '../constants'
-import { MetaPipe, NextPipe } from '@stone-js/pipeline'
-import { ClassType, IBlueprint, BlueprintContext, AdapterConfig } from '@stone-js/core'
 import { BinaryFileResponse, OutgoingHttpResponse, OutgoingHttpResponseOptions } from '@stone-js/http-core'
+import { ClassType, IBlueprint, BlueprintContext, AdapterConfig, MetaMiddleware, NextMiddleware } from '@stone-js/core'
 
 /**
  * Middleware to dynamically set response resolver for adapter.
@@ -18,7 +17,7 @@ import { BinaryFileResponse, OutgoingHttpResponse, OutgoingHttpResponseOptions }
  */
 export const SetNodeHttpResponseResolverMiddleware = async (
   context: BlueprintContext<IBlueprint, ClassType>,
-  next: NextPipe<BlueprintContext<IBlueprint, ClassType>, IBlueprint>
+  next: NextMiddleware<BlueprintContext<IBlueprint, ClassType>, IBlueprint>
 ): Promise<IBlueprint> => {
   if (context.blueprint.get<string>('stone.adapter.platform') === NODE_HTTP_PLATFORM) {
     context.blueprint.set(
@@ -48,7 +47,7 @@ export const SetNodeHttpResponseResolverMiddleware = async (
  */
 export const SetNodeHttpDefaultAdapterMiddleware = async (
   context: BlueprintContext<IBlueprint, ClassType>,
-  next: NextPipe<BlueprintContext<IBlueprint, ClassType>, IBlueprint>
+  next: NextMiddleware<BlueprintContext<IBlueprint, ClassType>, IBlueprint>
 ): Promise<IBlueprint> => {
   const hasDefaultAdapter = context.blueprint.get<AdapterConfig[]>('stone.adapters', []).some((adapter) => adapter.default === true)
   if (!hasDefaultAdapter) {
@@ -68,7 +67,7 @@ export const SetNodeHttpDefaultAdapterMiddleware = async (
  * This array defines a list of middleware pipes, each with a `pipe` function and a `priority`.
  * These pipes are executed in the order of their priority values, with lower values running first.
  */
-export const metaAdapterBlueprintMiddleware: Array<MetaPipe<BlueprintContext<IBlueprint, ClassType>, IBlueprint>> = [
+export const metaAdapterBlueprintMiddleware: Array<MetaMiddleware<BlueprintContext<IBlueprint, ClassType>, IBlueprint>> = [
   { module: SetNodeHttpDefaultAdapterMiddleware, priority: 0 },
   { module: SetNodeHttpResponseResolverMiddleware, priority: 6 }
 ]

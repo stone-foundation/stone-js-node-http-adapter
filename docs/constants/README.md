@@ -1,9 +1,3 @@
-[**Node Adapter Documentation**](../README.md)
-
-***
-
-[Node Adapter Documentation](../README.md) / constants
-
 # constants
 
 ## Variables

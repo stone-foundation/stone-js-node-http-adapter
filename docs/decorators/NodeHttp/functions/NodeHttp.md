@@ -1,14 +1,8 @@
-[**Node Adapter Documentation**](../../../README.md)
-
-***
-
-[Node Adapter Documentation](../../../README.md) / [decorators/NodeHttp](../README.md) / NodeHttp
-
 # Function: NodeHttp()
 
-> **NodeHttp**\<`T`\>(`options`): `ClassDecorator`
-
-Defined in: [node-http-adapter/src/decorators/NodeHttp.ts:39](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/decorators/NodeHttp.ts#L39)
+```ts
+function NodeHttp<T>(options): ClassDecorator;
+```
 
 A class decorator for registering a Node.js HTTP adapter in the Stone.js framework.
 

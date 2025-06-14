@@ -1,12 +1,4 @@
-[**Node Adapter Documentation**](../../README.md)
-
-***
-
-[Node Adapter Documentation](../../README.md) / [declarations](../README.md) / NodeHttpAdapterContext
-
 # Interface: NodeHttpAdapterContext
-
-Defined in: [node-http-adapter/src/declarations.ts:49](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/declarations.ts#L49)
 
 Extends the `AdapterContext` interface to provide additional properties for the Node.js HTTP adapter.
 
@@ -19,98 +11,16 @@ Stone.js adapter context properties.
 
 ## Properties
 
-### executionContext
-
-> `readonly` **executionContext**: [`NodeHttpServer`](../type-aliases/NodeHttpServer.md)
-
-Defined in: core/dist/index.d.ts:1867
-
-The executionContext of type ExecutionContextType.
-
-#### Inherited from
-
-`AdapterContext.executionContext`
-
-***
-
-### incomingEvent?
-
-> `optional` **incomingEvent**: `IncomingHttpEvent`
-
-Defined in: core/dist/index.d.ts:1871
-
-The incomingEvent associated with the executionContext.
-
-#### Inherited from
-
-`AdapterContext.incomingEvent`
-
-***
-
-### incomingEventBuilder
-
-> `readonly` **incomingEventBuilder**: `IAdapterEventBuilder`\<`IncomingHttpEventOptions`, `IncomingHttpEvent`\>
-
-Defined in: core/dist/index.d.ts:1879
-
-The incomingEventBuilder.
-
-#### Inherited from
-
-`AdapterContext.incomingEventBuilder`
-
-***
-
-### outgoingResponse?
-
-> `optional` **outgoingResponse**: `OutgoingHttpResponse`
-
-Defined in: core/dist/index.d.ts:1875
-
-The outgoingResponse associated with the executionContext.
-
-#### Inherited from
-
-`AdapterContext.outgoingResponse`
-
-***
-
-### rawEvent
-
-> `readonly` **rawEvent**: `IncomingMessage`
-
-Defined in: core/dist/index.d.ts:1859
-
-The rawEvent of type RawEventType.
-
-#### Inherited from
-
-`AdapterContext.rawEvent`
-
-***
-
 ### rawResponse
 
-> **rawResponse**: `ServerResponse`
-
-Defined in: [node-http-adapter/src/declarations.ts:60](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/declarations.ts#L60)
+```ts
+rawResponse: ServerResponse;
+```
 
 The raw HTTP response object associated with the current request.
 
 #### Overrides
 
-`AdapterContext.rawResponse`
-
-***
-
-### rawResponseBuilder
-
-> `readonly` **rawResponseBuilder**: `IAdapterEventBuilder`\<`RawResponseOptions`, `IRawResponseWrapper`\<`ServerResponse`\<`IncomingMessage`\>\>\>
-
-Defined in: core/dist/index.d.ts:1883
-
-The rawResponseBuilder.
-
-#### Inherited from
-
-`AdapterContext.rawResponseBuilder`
+```ts
+AdapterContext.rawResponse
+```

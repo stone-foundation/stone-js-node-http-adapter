@@ -1,5 +1,5 @@
 import proxyAddr from 'proxy-addr'
-import { NextPipe } from '@stone-js/pipeline'
+import { NextMiddleware } from '@stone-js/core'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { NodeHttpAdapterError } from '../../src/errors/NodeHttpAdapterError'
 import { IncomingEventMiddleware } from '../../src/middleware/IncomingEventMiddleware'
@@ -26,7 +26,7 @@ describe('IncomingEventMiddleware', () => {
   let mockBlueprint: any
   let middleware: IncomingEventMiddleware
   let mockContext: NodeHttpAdapterContext
-  let next: NextPipe<NodeHttpAdapterContext, NodeHttpAdapterResponseBuilder>
+  let next: NextMiddleware<NodeHttpAdapterContext, NodeHttpAdapterResponseBuilder>
 
   beforeEach(() => {
     mockBlueprint = {

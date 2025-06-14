@@ -1,12 +1,4 @@
-[**Node Adapter Documentation**](../../README.md)
-
-***
-
-[Node Adapter Documentation](../../README.md) / [NodeHttpErrorHandler](../README.md) / NodeHttpErrorHandler
-
 # Class: NodeHttpErrorHandler
-
-Defined in: [node-http-adapter/src/NodeHttpErrorHandler.ts:27](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/NodeHttpErrorHandler.ts#L27)
 
 Class representing an NodeHttpErrorHandler.
 
@@ -18,9 +10,9 @@ Class representing an NodeHttpErrorHandler.
 
 ### Constructor
 
-> **new NodeHttpErrorHandler**(`options`): `NodeHttpErrorHandler`
-
-Defined in: [node-http-adapter/src/NodeHttpErrorHandler.ts:35](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/NodeHttpErrorHandler.ts#L35)
+```ts
+new NodeHttpErrorHandler(options): NodeHttpErrorHandler;
+```
 
 Create an NodeHttpErrorHandler.
 
@@ -40,9 +32,9 @@ NodeHttpErrorHandler options.
 
 ### handle()
 
-> **handle**(`error`, `context`): `AdapterEventBuilderType`\<`ServerResponse`\<`IncomingMessage`\>\>
-
-Defined in: [node-http-adapter/src/NodeHttpErrorHandler.ts:46](https://github.com/stonemjs/node-http-adapter/blob/2d4cdca7f2d56ee189e6562c361aeaf96b9f1db2/src/NodeHttpErrorHandler.ts#L46)
+```ts
+handle(error, context): AdapterEventBuilderType<ServerResponse<IncomingMessage>>;
+```
 
 Handle an error.
 
@@ -68,4 +60,6 @@ The raw response builder.
 
 #### Implementation of
 
-`IAdapterErrorHandler.handle`
+```ts
+IAdapterErrorHandler.handle
+```
