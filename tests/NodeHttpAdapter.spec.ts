@@ -1,55 +1,85 @@
-import onFinished from 'on-finished'
-import { createServer } from 'node:http'
+import { networkInterfaces } from 'node:os'
+import { AdapterEventBuilder } from '@stone-js/core'
+import { IncomingHttpEvent } from '@stone-js/http-core'
 import { NodeHttpAdapter } from '../src/NodeHttpAdapter'
 import { createServer as createHttpsServer } from 'node:https'
 import { ServerResponseWrapper } from '../src/ServerResponseWrapper'
-import { NodeHttpAdapterError } from '../src/errors/NodeHttpAdapterError'
-import {
-  AdapterEventBuilder,
-  AdapterOptions
-} from '@stone-js/core'
-import {
-  IncomingHttpEvent,
-  OutgoingHttpResponse
-} from '@stone-js/http-core'
+import { createServer, IncomingMessage, ServerResponse } from 'node:http'
 
-vi.mock('node:http')
-vi.mock('node:https')
-
-vi.mock('on-finished', () => {
+// Mocks
+vi.mock('node:http', async (importOriginal) => {
+  const actual: any = await importOriginal()
   return {
-    default: vi.fn((res, cb) => cb())
+    ...actual,
+    createServer: vi.fn(() => ({
+      once: vi.fn().mockReturnThis(),
+      listen: vi.fn((_, __, cb) => cb?.()),
+      close: vi.fn(),
+      on: vi.fn()
+    }))
   }
 })
 
-vi.mock('../src/ServerResponseWrapper', () => ({
-  ServerResponseWrapper: {
-    create: vi.fn()
+vi.mock('node:https', async (importOriginal) => {
+  const actual: any = await importOriginal()
+  return {
+    ...actual,
+    createServer: vi.fn(() => ({
+      once: vi.fn().mockReturnThis(),
+      listen: vi.fn((_, __, cb) => cb?.()),
+      close: vi.fn()
+    }))
+  }
+})
+
+vi.mock('node:os', async (importOriginal) => {
+  const actual: any = await importOriginal()
+  return {
+    ...actual,
+    networkInterfaces: vi.fn(() => ({
+      eth0: [{ family: 'IPv4', address: '192.168.0.1', internal: false }]
+    }))
+  }
+})
+
+vi.mock('chalk', () => ({
+  default: {
+    red: (msg: string) => msg,
+    green: (msg: string) => msg,
+    white: (msg: string) => msg,
+    gray: (msg: string) => msg,
+    blue: (msg: string) => msg
   }
 }))
 
-describe('NodeHTTPAdapter', () => {
+vi.mock('connect', () => {
+  return {
+    default: () => {
+      const app = (..._: any[]): void => {}
+      app.use = vi.fn().mockReturnThis()
+      return app
+    }
+  }
+})
+
+describe('NodeHttpAdapter', () => {
   let mockServer: any
-  let adapterOptions: AdapterOptions<IncomingHttpEvent, OutgoingHttpResponse>
+  let blueprint: any
 
   beforeEach(() => {
-    adapterOptions = {
-      hooks: {},
-      blueprint: {
-        get: vi.fn((key) => {
-          if (key === 'stone.adapter.url') return 'http://localhost:8080'
-          return {}
-        })
-      },
-      handlerResolver: vi.fn(),
-      logger: {
-        error: vi.fn()
-      },
-      errorHandler: {
-        render: vi.fn(),
-        report: vi.fn()
-      }
-    } as any
+    blueprint = {
+      values: {},
+      set: vi.fn((key, value) => {
+        blueprint.values[key] = value
+      }),
+      get: vi.fn((key, fallback) => blueprint.values[key] ?? fallback),
+      has: vi.fn((key) => key in blueprint.values),
+      getAll: vi.fn(() => blueprint.values),
+    }
+    blueprint.set('stone.logger.resolver', () => ({
+      info: vi.fn(),
+      error: vi.fn()
+    }))
 
     mockServer = {
       close: vi.fn((cb) => cb()),
@@ -61,113 +91,157 @@ describe('NodeHTTPAdapter', () => {
     vi.mocked(createHttpsServer).mockReturnValue(mockServer)
   })
 
-  it('should create an instance with correct https configuration', () => {
-    const adapter = NodeHttpAdapter.create(adapterOptions)
+  afterEach(() => {
+    vi.restoreAllMocks()
+  })
+
+  it('should create instance and default to HTTP server', () => {
+    const adapter = NodeHttpAdapter.create(blueprint)
     expect(adapter).toBeInstanceOf(NodeHttpAdapter)
   })
 
-  it('should use HTTPS server when URL contains https', () => {
-    vi.mocked(adapterOptions.blueprint.get).mockReturnValue('https://localhost:8443')
-    const adapter = NodeHttpAdapter.create(adapterOptions)
+  it('should create HTTPS server if isSsl=true', () => {
+    blueprint.set('stone.adapter.isSsl', true)
+    const adapter = NodeHttpAdapter.create(blueprint)
     expect(adapter).toBeInstanceOf(NodeHttpAdapter)
   })
 
-  it('should throw error when used outside Node.js context', async () => {
-    const adapter = NodeHttpAdapter.create(adapterOptions)
-
-    global.window = {} as any // Simulate browser context
-
-    await expect(adapter.run()).rejects.toThrow(NodeHttpAdapterError)
-    expect(adapterOptions.blueprint.get).toHaveBeenCalledWith(
-      'stone.adapter.url',
-      'http://localhost:8080'
-    )
-
-    delete (global as any).window // Cleanup
+  it('should run server and resolve with server instance', async () => {
+    const adapter = NodeHttpAdapter.create(blueprint)
+    const server = await adapter.run()
+    expect(server).toBeDefined()
   })
 
-  it('should start the server and listen on the correct port', async () => {
-    const adapter = NodeHttpAdapter.create(adapterOptions)
-
-    await expect(adapter.run()).resolves.toBe(mockServer)
-
-    expect(mockServer.listen).toHaveBeenCalledWith(
-      8080,
-      'localhost',
-      expect.any(Function)
-    )
+  it('should print URLs if printUrls=true', async () => {
+    vi.mocked(networkInterfaces).mockReturnValue({ eth0: undefined })
+    const logger = { info: vi.fn(), error: vi.fn() }
+    blueprint.set('stone.adapter.printUrls', true)
+    blueprint.set('stone.logger.resolver', () => logger)
+    const adapter = NodeHttpAdapter.create(blueprint)
+    await adapter.run()
+    expect(logger.info).toHaveBeenCalled()
   })
 
-  it('should call the appropriate event listener on request', async () => {
-    const adapter = NodeHttpAdapter.create(adapterOptions)
-    const mockEvent = {} as any
-    const mockResponse = {} as any
+  it('should throw error if window object exists', async () => {
+    const adapter = NodeHttpAdapter.create(blueprint)
+    Object.defineProperty(globalThis, 'window', { value: {}, configurable: true })
+    // @ts-expect-error - private access
+    await expect(adapter.onStart()).rejects.toThrow()
+    delete (globalThis as any).window
+  })
+
+  it('should setup global error handlers and shutdown hook', async () => {
+    const processOn = vi.spyOn(process, 'on')
+    const adapter = NodeHttpAdapter.create(blueprint)
+    // @ts-expect-error - private access
+    await adapter.onStart()
+    expect(processOn).toHaveBeenCalledWith('SIGINT', expect.any(Function))
+    expect(processOn).toHaveBeenCalledWith('uncaughtException', expect.any(Function))
+  })
+
+  it('should handle incoming event errors and send response', async () => {
+    const adapter = NodeHttpAdapter.create(blueprint)
+    const req = new IncomingMessage(null as any)
+    const res = new ServerResponse(req)
 
     IncomingHttpEvent.create = vi.fn()
     ServerResponseWrapper.create = vi.fn()
-    AdapterEventBuilder.create = vi.fn((options) => options.resolver(mockResponse, {}))
-    // @ts-expect-error
-    adapter.sendEventThroughDestination = vi.fn()
+    AdapterEventBuilder.create = vi.fn(({ resolver }) => resolver({}))
 
-    // @ts-expect-error
-    await adapter.eventListener(mockEvent, mockResponse)
+    vi.spyOn<any, any>(adapter, 'resolveEventHandler').mockReturnValue({ handle: vi.fn() })
+    vi.spyOn<any, any>(adapter, 'sendEventThroughDestination').mockResolvedValue(res)
+    vi.spyOn<any, any>(adapter, 'executeEventHandlerHooks').mockResolvedValue(undefined)
 
+    // @ts-expect-error - private access
+    const result = await adapter.eventListener(req, res)
+
+    expect(result).toBeInstanceOf(ServerResponse)
+    expect(IncomingHttpEvent.create).toHaveBeenCalled()
     expect(AdapterEventBuilder.create).toHaveBeenCalled()
-    // @ts-expect-error
-    expect(adapter.sendEventThroughDestination).toHaveBeenCalled()
-    expect(ServerResponseWrapper.create).toHaveBeenCalledWith(
-      mockResponse,
-      expect.anything()
-    )
+    expect(ServerResponseWrapper.create).toHaveBeenCalled()
   })
 
-  it('should call onTerminate on finished', async () => {
-    const adapter = NodeHttpAdapter.create(adapterOptions)
-    const context = { rawResponse: {} } as any
-    const eventHandler = {} as unknown
+  it('should handle errors in eventListener and build raw response', async () => {
+    const adapter = NodeHttpAdapter.create(blueprint)
+    const req = new IncomingMessage(null as any)
+    const res = new ServerResponse(req)
 
-    // @ts-expect-error
-    await adapter.onTerminate(eventHandler, context)
+    vi.spyOn<any, any>(adapter, 'resolveEventHandler').mockImplementation(() => { throw new Error('test') })
+    vi.spyOn<any, any>(adapter, 'handleError').mockResolvedValue({ respond: vi.fn().mockResolvedValue(res) })
+    vi.spyOn<any, any>(adapter, 'buildRawResponse').mockResolvedValue(res)
 
-    expect(AdapterEventBuilder.create).toHaveBeenCalled()
-    expect(onFinished).toHaveBeenCalledWith({}, expect.any(Function))
+    // @ts-expect-error - private access
+    const result = await adapter.eventListener(req, res)
+
+    req.emit('error', new Error('test'))
+    res.emit('error', new Error('test'))
+
+    expect(result).toBeInstanceOf(ServerResponse)
+    // @ts-expect-error - private access
+    expect(adapter.logger.error).toHaveBeenCalledTimes(2)
+  })
+
+  it('getNetworkUrl should return expected local IP', () => {
+    const adapter = NodeHttpAdapter.create(blueprint)
+    // @ts-expect-error - private access
+    const result = adapter.getNetworkUrl(new URL('http://localhost:3000'))
+    expect(result).toBe('http://192.168.0.1:3000/')
+  })
+
+  it('getNetworkUrl should not return expected local IP when there is no interfaces', () => {
+    vi.mocked(networkInterfaces).mockReturnValue({ eth0: undefined })
+    const adapter = NodeHttpAdapter.create(blueprint)
+    // @ts-expect-error - private access
+    const result = adapter.getNetworkUrl(new URL('http://localhost:3000'))
+    expect(result).toBeUndefined()
   })
 
   it('should handle uncaught exceptions gracefully', () => {
-    const adapter = NodeHttpAdapter.create(adapterOptions)
+    const adapter = NodeHttpAdapter.create(blueprint)
 
     const mockError = new Error('Uncaught exception')
-    const processExitSpy = vi.spyOn(process, 'exit').mockImplementation((() => {}) as any)
 
     // @ts-expect-error
-    adapter.catchUncaughtExceptionListener()
+    adapter.setupGlobalErrorHandlers()
 
     process.emit('uncaughtException', mockError)
 
-    expect(adapterOptions.logger.error).toHaveBeenCalledWith(
-      'Uncaught exception detected.',
+    // @ts-expect-error - private access
+    expect(adapter.logger.error).toHaveBeenCalledWith(
+      'Uncaught exception detected. Shutting down the server...',
       { error: mockError }
     )
+  })
 
-    expect(mockServer.close).toHaveBeenCalled()
-    expect(processExitSpy).toHaveBeenCalledWith(1)
+  it('should shutdown application on SIGINT', () => {
+    const adapter = NodeHttpAdapter.create(blueprint)
+    // @ts-expect-error - private access
+    adapter.executeHooks = vi.fn()
 
-    processExitSpy.mockRestore() // Cleanup
+    // @ts-expect-error
+    adapter.setupShutdownHook()
+
+    process.emit('SIGINT')
+
+    // @ts-expect-error - private access
+    expect(adapter.executeHooks).toHaveBeenCalledWith('onStop')
   })
 
   it('should log unhandled promise rejections', () => {
-    const adapter = NodeHttpAdapter.create(adapterOptions)
+    const adapter = NodeHttpAdapter.create(blueprint)
 
     // @ts-expect-error
-    adapter.catchUncaughtExceptionListener()
+    adapter.setupGlobalErrorHandlers()
 
     const mockReason = 'Rejection reason'
     const mockPromise = Promise.resolve()
 
     process.emit('unhandledRejection', mockReason, mockPromise)
 
-    expect(adapterOptions.logger.error).toHaveBeenCalledWith(
-      `Unhandled Rejection at: ${String(mockPromise)}, reason: ${String(mockReason)}`
+    // @ts-expect-error - private access
+    expect(adapter.logger.error).toHaveBeenCalledWith(
+      'Unhandled promise rejection detected.',
+      { promise: String(mockPromise), reason: String(mockReason) }
     )
   })
 })

@@ -1,5 +1,4 @@
-import { IBlueprint } from '@stone-js/core'
-import { NextPipe } from '@stone-js/pipeline'
+import { IBlueprint, NextMiddleware } from '@stone-js/core'
 import { isMultipart, getFilesUploads } from '@stone-js/http-core'
 import { NodeHttpAdapterError } from '../errors/NodeHttpAdapterError'
 import { NodeHttpAdapterContext, NodeHttpAdapterResponseBuilder } from '../declarations'
@@ -33,7 +32,7 @@ export class FilesEventMiddleware {
    *
    * @throws {NodeHttpAdapterError} If required components such as the rawEvent or IncomingEventBuilder are not provided.
    */
-  async handle (context: NodeHttpAdapterContext, next: NextPipe<NodeHttpAdapterContext, NodeHttpAdapterResponseBuilder>): Promise<NodeHttpAdapterResponseBuilder> {
+  async handle (context: NodeHttpAdapterContext, next: NextMiddleware<NodeHttpAdapterContext, NodeHttpAdapterResponseBuilder>): Promise<NodeHttpAdapterResponseBuilder> {
     if (context.rawEvent === undefined || context.incomingEventBuilder?.add === undefined) {
       throw new NodeHttpAdapterError('The context is missing required components.')
     }
@@ -46,8 +45,15 @@ export class FilesEventMiddleware {
         .incomingEventBuilder
         .add('files', response.files)
         .add('body', response.fields)
+        // In fullstack forms, the method is spoofed and sent as a hidden field
+        .add('method', response.fields.$method$ ?? context.rawEvent.method)
     }
 
     return await next(context)
   }
 }
+
+/**
+ * Meta Middleware for processing files uploads.
+ */
+export const MetaFilesEventMiddleware = { module: FilesEventMiddleware, isClass: true }

@@ -1,10 +1,3 @@
-import proxyAddr from 'proxy-addr'
-import { TLSSocket } from 'node:tls'
-import { IBlueprint } from '@stone-js/core'
-import { IncomingMessage } from 'node:http'
-import { NextPipe } from '@stone-js/pipeline'
-import { NodeHttpAdapterError } from '../errors/NodeHttpAdapterError'
-import { NodeHttpAdapterContext, NodeHttpAdapterResponseBuilder } from '../declarations'
 import {
   getProtocol,
   isIpTrusted,
@@ -12,6 +5,13 @@ import {
   CookieSameSite,
   CookieCollection
 } from '@stone-js/http-core'
+import proxyAddr from 'proxy-addr'
+import { TLSSocket } from 'node:tls'
+import { IncomingMessage } from 'node:http'
+import { NODE_HTTP_PLATFORM } from '../constants'
+import { IBlueprint, NextMiddleware } from '@stone-js/core'
+import { NodeHttpAdapterError } from '../errors/NodeHttpAdapterError'
+import { NodeHttpAdapterContext, NodeHttpAdapterResponseBuilder } from '../declarations'
 
 /**
  * Represents the options for the IncomingEventMiddleware.
@@ -64,7 +64,7 @@ export class IncomingEventMiddleware {
    * @returns A promise that resolves to the processed context.
    * @throws {NodeHttpAdapterError} If required components are missing in the context.
    */
-  async handle (context: NodeHttpAdapterContext, next: NextPipe<NodeHttpAdapterContext, NodeHttpAdapterResponseBuilder>): Promise<NodeHttpAdapterResponseBuilder> {
+  async handle (context: NodeHttpAdapterContext, next: NextMiddleware<NodeHttpAdapterContext, NodeHttpAdapterResponseBuilder>): Promise<NodeHttpAdapterResponseBuilder> {
     if ((context.rawEvent == null) || ((context.incomingEventBuilder?.add) == null)) {
       throw new NodeHttpAdapterError('The context is missing required components.')
     }
@@ -79,15 +79,31 @@ export class IncomingEventMiddleware {
       .add('url', url)
       .add('ips', ipAddresses)
       .add('queryString', url.search)
-      .add('method', context.rawEvent.method)
-      .add('source', context.executionContext)
+      .add('source', this.getSource(context))
       .add('headers', context.rawEvent.headers)
+      // If not defined by other middleware
+      // In fullstack forms, the method is spoofed and sent as a hidden field
+      .addIf('method', context.rawEvent.method)
       .add('protocol', this.getProtocol(context.rawEvent, proxyOptions))
-      .add('metadata', { node: { message: context.rawEvent, response: context.rawResponse } })
       .add('ip', proxyAddr(context.rawEvent, isIpTrusted(proxyOptions.trustedIp, proxyOptions.untrustedIp)))
       .add('cookies', CookieCollection.create(context.rawEvent.headers.cookie, cookieOptions, this.getCookieSecret()))
 
     return await next(context)
+  }
+
+  /**
+   * Create the IncomingEventSource from the context.
+   *
+   * @param context - The adapter context containing the raw event, execution context, and other data.
+   * @returns The Incoming Event Source.
+   */
+  private getSource (context: NodeHttpAdapterContext): unknown {
+    return {
+      rawEvent: context.rawEvent,
+      platform: NODE_HTTP_PLATFORM,
+      rawResponse: context.rawResponse,
+      rawContext: context.executionContext
+    }
   }
 
   /**
@@ -156,3 +172,8 @@ export class IncomingEventMiddleware {
     return getProtocol(message.socket.remoteAddress ?? '', message.headers, message.socket instanceof TLSSocket, options)
   }
 }
+
+/**
+ * Meta Middleware for processing incoming events.
+ */
+export const MetaIncomingEventMiddleware = { module: IncomingEventMiddleware, isClass: true }

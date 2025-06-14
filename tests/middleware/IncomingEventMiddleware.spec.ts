@@ -1,5 +1,5 @@
 import proxyAddr from 'proxy-addr'
-import { NextPipe } from '@stone-js/pipeline'
+import { NextMiddleware } from '@stone-js/core'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { NodeHttpAdapterError } from '../../src/errors/NodeHttpAdapterError'
 import { IncomingEventMiddleware } from '../../src/middleware/IncomingEventMiddleware'
@@ -26,7 +26,7 @@ describe('IncomingEventMiddleware', () => {
   let mockBlueprint: any
   let middleware: IncomingEventMiddleware
   let mockContext: NodeHttpAdapterContext
-  let next: NextPipe<NodeHttpAdapterContext, NodeHttpAdapterResponseBuilder>
+  let next: NextMiddleware<NodeHttpAdapterContext, NodeHttpAdapterResponseBuilder>
 
   beforeEach(() => {
     mockBlueprint = {
@@ -46,7 +46,8 @@ describe('IncomingEventMiddleware', () => {
       },
       rawResponse: {},
       incomingEventBuilder: {
-        add: vi.fn().mockReturnThis()
+        add: vi.fn().mockReturnThis(),
+        addIf: vi.fn().mockReturnThis()
       }
     } as unknown as NodeHttpAdapterContext
 
@@ -82,7 +83,7 @@ describe('IncomingEventMiddleware', () => {
 
     expect(next).toHaveBeenCalledWith(mockContext)
     expect(mockContext.incomingEventBuilder?.add).toHaveBeenCalledWith('ips', [])
-    expect(mockContext.incomingEventBuilder?.add).toHaveBeenCalledWith('method', 'GET')
+    expect(mockContext.incomingEventBuilder?.addIf).toHaveBeenCalledWith('method', 'GET')
     expect(mockContext.incomingEventBuilder?.add).toHaveBeenCalledWith('url', expect.any(URL))
     expect(mockContext.incomingEventBuilder?.add).toHaveBeenCalledWith('cookies', { testCookie: 'value' })
     expect(mockContext.incomingEventBuilder?.add).toHaveBeenCalledWith('headers', mockContext.rawEvent?.headers)

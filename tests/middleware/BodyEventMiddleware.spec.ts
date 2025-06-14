@@ -40,7 +40,7 @@ describe('BodyEventMiddleware', () => {
         headers: { 'content-type': 'application/json', 'content-length': '123' }
       },
       incomingEventBuilder: {
-        add: vi.fn()
+        add: vi.fn().mockReturnThis()
       }
     } as unknown as NodeHttpAdapterContext
 
