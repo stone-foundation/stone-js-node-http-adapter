@@ -4,6 +4,13 @@ All notable changes to the "Stone.js Node HTTP Adapter" extension will be docume
 
 ## Unreleased
 
+## [0.2.0](https://github.com/stone-foundation/stone-js-node-http-adapter/compare/v0.1.0...v0.2.0) (2025-06-16)
+
+
+### Features
+
+* add browser-safe fallback entry with no-op modules for frontend compatibility ([#28](https://github.com/stone-foundation/stone-js-node-http-adapter/issues/28)) ([283561f](https://github.com/stone-foundation/stone-js-node-http-adapter/commit/283561f29362028730f78fd875a92d4ecb3bf885))
+
 ## [0.1.0](https://github.com/stone-foundation/stone-js-node-http-adapter/compare/v0.0.22...v0.1.0) (2025-06-14)
 
 
