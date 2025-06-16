@@ -26,7 +26,6 @@ describe('NodeHttp', () => {
     NodeHttp(options)(class {})
     BrowserNodeHttp()(class {})
     expect(addBlueprint).toHaveBeenCalled()
-    expect(addBlueprint).toHaveBeenCalled()
     expect(classDecoratorLegacyWrapper).toHaveBeenCalledTimes(2)
     expect(addBlueprint).not.toHaveBeenCalledWith(expect.any(Function), expect.any(Object), browserNodeHttpAdapterBlueprint)
   })
