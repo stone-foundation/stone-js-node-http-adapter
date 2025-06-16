@@ -1,5 +1,6 @@
 {
   "entryPoints": ["src/**/*.ts"], // Entry point for your project, change accordingly
+  "exclude": ["src/browser/**/*"], // Exclude browser-specific files if any
   "out": "docs", // Output directory for the generated documentation
   "name": "Node HTTP Adapter", // Project name used in the docs
   "includeVersion": false, // Optional: Include project version in the output

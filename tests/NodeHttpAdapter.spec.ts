@@ -74,7 +74,7 @@ describe('NodeHttpAdapter', () => {
       }),
       get: vi.fn((key, fallback) => blueprint.values[key] ?? fallback),
       has: vi.fn((key) => key in blueprint.values),
-      getAll: vi.fn(() => blueprint.values),
+      getAll: vi.fn(() => blueprint.values)
     }
     blueprint.set('stone.logger.resolver', () => ({
       info: vi.fn(),
